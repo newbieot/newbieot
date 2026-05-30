@@ -3,25 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IR Solutions Portal</title>
+    <title>PosNew Hub | Workspace</title>
     
     <link rel="icon" type="image/png" href="favicon.png">
     
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
-            --primary-red: #ff4d4d;
-            --bg-dark: #0f172a;
-            --card-bg: rgba(255, 255, 255, 0.05);
+            --pos-orange: #FF5722; /* Professional Postal Orange */
+            --pos-orange-glow: rgba(255, 87, 34, 0.15);
+            --pos-orange-hover: rgba(255, 87, 34, 0.25);
+            --bg-dark: #090e17;
+            --card-bg: rgba(15, 23, 42, 0.6);
+            --card-border: rgba(255, 255, 255, 0.06);
             --text-main: #f8fafc;
             --text-dim: #94a3b8;
+            --success-green: #10b981;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
@@ -29,70 +34,130 @@
             color: var(--text-main);
             min-height: 100vh;
             padding: 2rem 1rem;
-            background-image: radial-gradient(circle at top right, #1e293b, #0f172a);
+            /* Modern SaaS Mesh Gradient Background */
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(255, 87, 34, 0.05), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(30, 58, 138, 0.15), transparent 25%),
+                radial-gradient(circle at top right, #111827, #090e17);
+            background-attachment: fixed;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1050px;
             margin: 0 auto;
         }
 
+        /* Modern Header */
         header {
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
             text-align: center;
+            padding-top: 2rem;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--pos-orange-glow);
+            color: var(--pos-orange);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255, 87, 34, 0.2);
+        }
+
+        .pulse-dot {
+            width: 6px;
+            height: 6px;
+            background-color: var(--pos-orange);
+            border-radius: 50%;
+            box-shadow: 0 0 0 0 rgba(255, 87, 34, 0.7);
+            animation: pulse 2s infinite;
         }
 
         header h1 {
-            font-size: 1.8rem;
-            letter-spacing: -0.5px;
-            margin-bottom: 0.5rem;
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 0.8rem;
+            background: linear-gradient(to right, #ffffff, #cbd5e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         header p {
             color: var(--text-dim);
-            font-size: 0.95rem;
-            font-weight: 300;
+            font-size: 1.05rem;
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
         }
 
         .section-title {
             display: flex;
             align-items: center;
             gap: 10px;
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-            color: var(--primary-red);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-bottom: 1px solid rgba(255, 77, 77, 0.2);
-            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .section-title i {
+            color: var(--pos-orange);
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 1.5rem;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
         }
 
+        /* Glassmorphism Cards */
         .card {
             background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
             border-radius: 16px;
-            padding: 1.5rem;
+            padding: 1.8rem;
             text-decoration: none;
             color: inherit;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 14px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: transparent;
+            transition: background 0.3s ease;
         }
 
         .card:hover {
             transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--primary-red);
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+            background: rgba(30, 41, 59, 0.8);
+            border-color: rgba(255, 87, 34, 0.3);
+            box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 87, 34, 0.05);
+        }
+
+        .card:hover::before {
+            background: var(--pos-orange);
         }
 
         .card-header {
@@ -102,35 +167,59 @@
         }
 
         .icon-box {
-            background: rgba(255, 77, 77, 0.15);
-            padding: 10px;
+            background: var(--card-border);
+            padding: 12px;
             border-radius: 12px;
-            color: var(--primary-red);
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover .icon-box {
+            background: var(--pos-orange-hover);
+            color: var(--pos-orange);
         }
 
         .card h3 {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: 600;
+            color: #ffffff;
         }
 
         .card p {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--text-dim);
-            line-height: 1.4;
+            line-height: 1.5;
+        }
+
+        .status-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            color: var(--success-green);
+            background: rgba(16, 185, 129, 0.1);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-weight: 500;
         }
 
         .status-dot {
-            width: 8px;
-            height: 8px;
-            background: #10b981;
+            width: 6px;
+            height: 6px;
+            background: var(--success-green);
             border-radius: 50%;
-            box-shadow: 0 0 8px #10b981;
+            box-shadow: 0 0 8px var(--success-green);
         }
 
-        @media (max-width: 600px) {
-            .grid {
-                grid-template-columns: 1fr;
-            }
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 87, 34, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(255, 87, 34, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 87, 34, 0); }
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            .grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -138,114 +227,119 @@
 
 <div class="container">
     <header>
-        <h1>IR Solutions Portal</h1>
-        <p>Welcome! newbieot is here to help you streamline your daily tasks.</p>
+        <div class="badge">
+            <div class="pulse-dot"></div>
+            SYSTEM ONLINE
+        </div>
+        <h1>PosNew Hub</h1>
+        <p>The new era of streamlined logistics and corporate operations. Select a workspace to begin.</p>
     </header>
 
     <div class="section-title">
-        <i data-lucide="briefcase"></i> Pos Indonesia Operations
+        <i data-lucide="layers"></i> Enterprise Logistics Tools
     </div>
     
     <div class="grid">
-        <a href="https://lacakresipos.pages.dev" target="_blank" rel="noopener noreferrer" class="card">
+        <a href="https://lacak.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
             <div class="card-header">
-                <div class="icon-box"><i data-lucide="package"></i></div>
-                <div class="status-dot"></div>
+                <div class="icon-box"><i data-lucide="map-pin"></i></div>
+                <div class="status-badge"><div class="status-dot"></div> Active</div>
             </div>
             <h3>PosIND Track & Trace</h3>
-            <p>Comprehensive tracking tool for Pos Indonesia, featuring photo evidence and map locations for corporate shipment updates.</p>
+            <p>Comprehensive tracking tool featuring photo evidence and map locations for corporate shipment updates.</p>
         </a>
 
-        <a href="https://hscode.pages.dev" target="_blank" rel="noopener noreferrer" class="card">
+        <a href="https://hs.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
             <div class="card-header">
-                <div class="icon-box"><i data-lucide="search"></i></div>
-                <div class="status-dot"></div>
+                <div class="icon-box"><i data-lucide="search-code"></i></div>
+                <div class="status-badge"><div class="status-dot"></div> Active</div>
             </div>
             <h3>AI HS Code Automation</h3>
-            <p>AI-powered Harmonized System (BTKI) code assistant, featuring a self-learning dictionary integrated with Google Sheets.</p>
+            <p>AI-powered Harmonized System (BTKI) code assistant, featuring a self-learning dictionary.</p>
         </a>
 
-        <a href="https://sap-pos.pages.dev" target="_blank" rel="noopener noreferrer" class="card">
+        <a href="https://sapx.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
             <div class="card-header">
-                <div class="icon-box"><i data-lucide="file-text"></i></div>
-                <div class="status-dot"></div>
+                <div class="icon-box"><i data-lucide="database-zap"></i></div>
+                <div class="status-badge"><div class="status-dot"></div> Active</div>
             </div>
-            <h3>SAP to Mile App Converter</h3>
-            <p>Converts SAP Excel data into Mile App templates to optimize corporate data entry and minimize human error.</p>
+            <h3>SAP to Mile Converter</h3>
+            <p>Converts SAP Excel data into Mile App templates to optimize data entry and minimize human error.</p>
         </a>
 
-        <a href="https://calculatorcba.pages.dev" target="_blank" rel="noopener noreferrer" class="card">
+        <a href="https://cba.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
             <div class="card-header">
                 <div class="icon-box"><i data-lucide="calculator"></i></div>
-                <div class="status-dot"></div>
+                <div class="status-badge"><div class="status-dot"></div> Active</div>
             </div>
-            <h3>CBA Logistic Pricing Calculator</h3>
-            <p>Fast and precise Cost-Based Analysis tool for evaluating costs and profit margins in logistics sales projects.</p>
+            <h3>CBA Pricing Calculator</h3>
+            <p>Fast and precise Cost-Based Analysis tool for evaluating costs and profit margins in logistics deals.</p>
         </a>
 
-        <a href="https://rapikanbukpot.pages.dev" target="_blank" rel="noopener noreferrer" class="card">
+        <a href="https://clean.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
             <div class="card-header">
-                <div class="icon-box"><i data-lucide="file-check"></i></div>
-                <div class="status-dot"></div>
+                <div class="icon-box"><i data-lucide="sparkles"></i></div>
+                <div class="status-badge"><div class="status-dot"></div> Active</div>
             </div>
             <h3>PosIND Data Cleanser</h3>
             <p>Automated solution for cleaning and organizing Tax Deduction files, Mile App PODs, and PRANPP data.</p>
         </a>
 
-        <a href="https://tarifmile.pages.dev" target="_blank" rel="noopener noreferrer" class="card">
+        <a href="https://tarif.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
             <div class="card-header">
-                <div class="icon-box"><i data-lucide="settings"></i></div>
-                <div class="status-dot"></div>
+                <div class="icon-box"><i data-lucide="receipt"></i></div>
+                <div class="status-badge"><div class="status-dot"></div> Active</div>
             </div>
             <h3>Bulk Tariff Template</h3>
             <p>Efficient Mile App tariff template generator tailored specifically for tariff administration needs.</p>
         </a>
 
-        <a href="https://myrepublic.pages.dev" target="_blank" rel="noopener noreferrer" class="card">
+        <a href="https://myrep.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
             <div class="card-header">
-                <div class="icon-box"><i data-lucide="repeat"></i></div>
-                <div class="status-dot"></div>
+                <div class="icon-box"><i data-lucide="wifi"></i></div>
+                <div class="status-badge"><div class="status-dot"></div> Active</div>
             </div>
-            <h3>MyRepublic Batch Generator</h3>
+            <h3>MyRepublic Batch Gen</h3>
             <p>Automated shipment entry generator that converts HTML portal files into ready-to-use batch data.</p>
         </a>
 
-        <a href="https://referralcard.pages.dev/" target="_blank" rel="noopener noreferrer" class="card">
+        <a href="https://refcard.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
             <div class="card-header">
                 <div class="icon-box"><i data-lucide="qr-code"></i></div>
-                <div class="status-dot"></div>
+                <div class="status-badge"><div class="status-dot"></div> Active</div>
             </div>
             <h3>Referral Card Generator</h3>
-            <p>Automated digital referral card creator for PosIND Hajj & Umrah Cargo, featuring an instant high-precision QR Code generator for partners.</p>
+            <p>Digital referral card creator for Hajj & Umrah Cargo, featuring an instant high-precision QR Code.</p>
         </a>
 
-        <a href="https://templatemile.pages.dev" target="_blank" rel="noopener noreferrer" class="card">
+        <a href="https://mile.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
             <div class="card-header">
                 <div class="icon-box"><i data-lucide="file-cog"></i></div>
-                <div class="status-dot"></div>
+                <div class="status-badge"><div class="status-dot"></div> Active</div>
             </div>
-            <h3>Mile App Bulk Data Converter</h3>
-            <p>A smart web utility that bridges AI OCR extractions with logistics systems. It processes raw spreadsheet data, cleanses text, and formats it into standardized Mile App templates.</p>
+            <h3>Mile App Bulk Converter</h3>
+            <p>A smart web utility that bridges AI OCR extractions with logistics systems and formats raw spreadsheet data.</p>
         </a>
     </div>
 
     <div class="section-title">
-        <i data-lucide="user"></i> Personal & Others
+        <i data-lucide="folder-lock"></i> Private Spaces
     </div>
 
     <div class="grid">
-        <a href="https://kostiburahmi.pages.dev" target="_blank" rel="noopener noreferrer" class="card">
+        <a href="https://kost.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
             <div class="card-header">
                 <div class="icon-box"><i data-lucide="home"></i></div>
-                <div class="status-dot"></div>
+                <div class="status-badge"><div class="status-dot"></div> Active</div>
             </div>
             <h3>Kost Ibu Rahmi</h3>
-            <p>Personal digital promotion project for Ibu Rahmi Boarding House, complete with an image gallery and pricing list.</p>
+            <p>Personal digital promotion project for Boarding House, complete with an image gallery and pricing list.</p>
         </a>
     </div>
 </div>
 
 <script>
+    // Initialize Lucide Icons
     lucide.createIcons();
 </script>
 </body>
