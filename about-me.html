@@ -139,8 +139,8 @@
 
         .profile-img-container {
             width: 160px;
-            height: 160px;
-            border-radius: 20px; /* Sedikit kotak melengkung bergaya SaaS */
+            height: 180px; /* Ditinggikan sedikit agar proporsi badan lebih pas */
+            border-radius: 20px; 
             border: 2px solid rgba(255, 255, 255, 0.1);
             overflow: hidden;
             box-shadow: 0 10px 20px rgba(0,0,0,0.4);
@@ -160,6 +160,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: top center; /* Mencegah bagian kepala terpotong */
         }
 
         .profile-title h1 {
@@ -286,31 +287,49 @@
             line-height: 1.4;
         }
 
-        /* FOOTER UNIVERSAL POSNEW */
-        footer {
-            text-align: center;
-            padding: 3rem 1rem;
+        /* DASHBOARD FOOTER (UNIVERSAL & MUTLAK 1 BARIS) */
+        .dashboard-footer {
+            width: 100%;
+            box-sizing: border-box;
+            background-color: transparent; /* Menyatu dengan background utama */
             border-top: 1px solid var(--card-border);
-            color: var(--text-dim);
-            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
             margin-top: auto;
-            background: rgba(9, 14, 23, 0.8);
-            backdrop-filter: blur(12px);
+            font-family: 'Gantari', 'Segoe UI', sans-serif;
+            z-index: 20;
+            height: 70px;
+            overflow: hidden;
         }
-        
-        footer p {
-            margin: 0;
-            line-height: 1.6;
+        .footer-brand {
+            display: flex; align-items: center; gap: 8px;
+            color: #f8fafc; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.5px;
+            white-space: nowrap; font-family: 'Sora', sans-serif;
         }
-        
-        footer .creator {
-            margin-top: 0.5rem;
-            color: #ffffff;
+        .footer-desc { 
+            color: var(--text-dim); font-size: 0.85rem; margin: 0 15px; 
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+            text-align: center; flex: 1;
         }
-        
-        footer strong {
-            color: var(--pos-orange);
-            font-weight: 600;
+        .footer-creator-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: var(--pos-orange-glow); border: 1px solid rgba(255, 87, 34, 0.2);
+            padding: 6px 16px; border-radius: 20px; color: #e2e8f0; font-size: 0.8rem;
+            white-space: nowrap; transition: all 0.3s ease;
+        }
+        .footer-creator-badge:hover { 
+            background: var(--pos-orange-hover); border-color: rgba(255, 87, 34, 0.5); 
+        }
+        .footer-creator-badge strong { color: var(--pos-orange); font-weight: 600; }
+
+        @media (max-width: 850px) {
+            .dashboard-footer { 
+                flex-direction: column; justify-content: center; gap: 10px; 
+                padding: 20px; height: auto; 
+            }
+            .footer-desc { display: none; }
         }
     </style>
 </head>
@@ -331,7 +350,7 @@
             
             <div class="profile-header">
                 <div class="profile-img-container">
-                    <!-- Foto Anda dari Github -->
+                    <!-- Foto menggunakan nama file langsung, diposisikan dari atas -->
                     <img src="Ikhsan-Radiansyah.jpg" alt="Foto Ikhsan Radiansyah">
                 </div>
                 <div class="profile-title">
@@ -385,12 +404,17 @@
         </div>
     </div>
 
-    <!-- FOOTER POSNEW HUB (Seragam) -->
-    <footer>
-        <p>Sistem utilitas ini dikembangkan secara independen untuk optimalisasi efisiensi layanan logistik B2B dan Ritel.</p>
-        <p class="creator">
+    <!-- FOOTER DASHBOARD MINIMALIS (Satu Baris) -->
+    <footer class="dashboard-footer">
+        <div class="footer-brand">
+            <i data-lucide="layers" style="color: #FF5722; width: 18px; height: 18px;"></i>
+            PosNew Hub
+        </div>
+        <p class="footer-desc">Sistem utilitas ini dikembangkan secara independen untuk optimalisasi efisiensi layanan logistik B2B dan Ritel.</p>
+        <div class="footer-creator-badge">
+            <i data-lucide="code-2" style="color: #FF5722; width: 14px; height: 14px;"></i>
             Inovasi oleh <strong>Ikhsan Radiansyah</strong> &copy; 2026
-        </p>
+        </div>
     </footer>
 
     <script>
