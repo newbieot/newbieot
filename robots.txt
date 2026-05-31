@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://posnew.com/sitemap.xml
