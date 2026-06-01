@@ -337,7 +337,7 @@
         .contact-info p { color: var(--text-dim); font-size: 0.8rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 
-        /* DASHBOARD FOOTER (UNIVERSAL) */
+        /* DASHBOARD FOOTER (UNIVERSAL & MUTLAK 1 BARIS) */
         .dashboard-footer {
             width: 100%;
             box-sizing: border-box;
@@ -348,7 +348,7 @@
             align-items: center;
             padding: 20px 40px;
             margin-top: auto;
-            font-family: 'Gantari', 'Segoe UI', sans-serif;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
             z-index: 20;
             height: 70px;
             overflow: hidden;
@@ -369,6 +369,10 @@
             padding: 6px 16px; border-radius: 20px; color: #e2e8f0; font-size: 0.8rem;
             white-space: nowrap; transition: all 0.3s ease;
         }
+        .footer-creator-badge:hover { 
+            background: var(--pos-orange-hover); border-color: rgba(255, 87, 34, 0.5); 
+        }
+        .footer-creator-badge strong { color: var(--pos-orange); font-weight: 600; }
 
         /* RESPONSIVE */
         @media (max-width: 850px) {
