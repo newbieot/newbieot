@@ -46,16 +46,16 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            /* Modern SaaS Mesh Gradient Background */
             background-image: 
                 radial-gradient(circle at 15% 50%, rgba(255, 87, 34, 0.05), transparent 25%),
                 radial-gradient(circle at 85% 30%, rgba(30, 58, 138, 0.15), transparent 25%),
                 radial-gradient(circle at top right, #111827, #090e17);
             background-attachment: fixed;
+            scroll-behavior: smooth;
         }
 
         .main-content {
-            flex: 1; /* Mendorong footer ke bawah */
+            flex: 1; 
             padding: 2rem 1rem;
             width: 100%;
         }
@@ -80,7 +80,7 @@
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 600;
-            padding: 6px 16px 6px 6px; /* Padding kiri lebih kecil agar memeluk foto */
+            padding: 6px 16px 6px 6px; 
             border-radius: 30px;
             background: rgba(15, 23, 42, 0.6);
             border: 1px solid var(--card-border);
@@ -111,7 +111,7 @@
 
         /* Modern Header */
         header {
-            margin-bottom: 4rem;
+            margin-bottom: 2rem;
             text-align: center;
             padding-top: 1rem;
         }
@@ -159,6 +159,123 @@
             line-height: 1.6;
         }
 
+        /* SEARCH BAR UI/UX */
+        .search-wrapper {
+            max-width: 650px;
+            margin: 0 auto 4rem auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1.2rem 3.5rem 1.2rem 3rem;
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid var(--card-border);
+            border-radius: 100px;
+            color: var(--text-main);
+            font-size: 1.05rem;
+            outline: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-input::placeholder {
+            color: rgba(148, 163, 184, 0.6);
+        }
+
+        .search-input:focus {
+            border-color: var(--pos-orange);
+            box-shadow: 0 0 0 4px rgba(255, 87, 34, 0.15), 0 10px 30px rgba(0, 0, 0, 0.3);
+            background: rgba(30, 41, 59, 0.9);
+            transform: translateY(-2px);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1.2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-dim);
+            pointer-events: none;
+            transition: color 0.3s ease;
+        }
+
+        .search-input:focus ~ .search-icon {
+            color: var(--pos-orange);
+        }
+
+        .search-clear {
+            position: absolute;
+            right: 1.2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-dim);
+            cursor: pointer;
+            display: none;
+            transition: all 0.2s ease;
+            padding: 4px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .search-clear:hover { 
+            color: #ffffff; 
+            background: var(--pos-orange);
+        }
+
+        .kbd-shortcut {
+            position: absolute;
+            right: 1.2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            padding: 4px 8px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-dim);
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .search-input:focus ~ .kbd-shortcut {
+            opacity: 0;
+        }
+
+        /* EMPTY STATE UI */
+        .no-results {
+            text-align: center;
+            padding: 4rem 2rem;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .no-results i {
+            color: rgba(255, 255, 255, 0.2);
+            margin-bottom: 1rem;
+            width: 48px;
+            height: 48px;
+        }
+
+        .no-results h3 {
+            font-size: 1.25rem;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .no-results p {
+            color: var(--text-dim);
+        }
+
+        /* Section Layout */
+        .section-wrapper {
+            margin-bottom: 4rem;
+            transition: opacity 0.3s ease;
+        }
+
         .section-title {
             display: flex;
             align-items: center;
@@ -180,7 +297,6 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 1.5rem;
-            margin-bottom: 4rem;
         }
 
         /* Glassmorphism Cards */
@@ -192,12 +308,18 @@
             padding: 1.8rem;
             text-decoration: none;
             color: inherit;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             flex-direction: column;
             gap: 14px;
             position: relative;
             overflow: hidden;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .card::before {
@@ -279,7 +401,7 @@
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 87, 34, 0); }
         }
 
-        /* DASHBOARD FOOTER (UNIVERSAL & MUTLAK 1 BARIS) */
+        /* DASHBOARD FOOTER */
         .dashboard-footer {
             width: 100%;
             box-sizing: border-box;
@@ -323,7 +445,8 @@
             }
             .footer-desc { display: none; }
             header h1 { font-size: 2rem; }
-            .grid { grid-template-columns: 1fr; }
+            .search-wrapper { margin-bottom: 2.5rem; }
+            .kbd-shortcut { display: none; } /* Hide shortcut on mobile */
         }
     </style>
 </head>
@@ -348,135 +471,164 @@
             <p>The new era of streamlined logistics and corporate operations. Select a workspace to begin.</p>
         </header>
 
-        <div class="section-title">
-            <i data-lucide="layers"></i> Enterprise Logistics Tools
-        </div>
-        
-        <div class="grid">
-            <a href="https://lacak.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
-                <div class="card-header">
-                    <div class="icon-box"><i data-lucide="map-pin"></i></div>
-                    <div class="status-badge"><div class="status-dot"></div> Active</div>
-                </div>
-                <h3>PosIND Track & Trace</h3>
-                <p>Comprehensive tracking tool featuring photo evidence and map locations for corporate shipment updates.</p>
-            </a>
-
-            <a href="https://hs.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
-                <div class="card-header">
-                    <div class="icon-box"><i data-lucide="search-code"></i></div>
-                    <div class="status-badge"><div class="status-dot"></div> Active</div>
-                </div>
-                <h3>AI HS Code Automation</h3>
-                <p>AI-powered Harmonized System (BTKI) code assistant, featuring a self-learning dictionary.</p>
-            </a>
-
-            <a href="https://sapx.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
-                <div class="card-header">
-                    <div class="icon-box"><i data-lucide="database-zap"></i></div>
-                    <div class="status-badge"><div class="status-dot"></div> Active</div>
-                </div>
-                <h3>SAP to Mile Converter</h3>
-                <p>Converts SAP Excel data into Mile App templates to optimize data entry and minimize human error.</p>
-            </a>
-
-            <a href="https://cba.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
-                <div class="card-header">
-                    <div class="icon-box"><i data-lucide="calculator"></i></div>
-                    <div class="status-badge"><div class="status-dot"></div> Active</div>
-                </div>
-                <h3>CBA Pricing Calculator</h3>
-                <p>Fast and precise Cost-Based Analysis tool for evaluating costs and profit margins in logistics deals.</p>
-            </a>
-
-            <a href="https://clean.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
-                <div class="card-header">
-                    <div class="icon-box"><i data-lucide="sparkles"></i></div>
-                    <div class="status-badge"><div class="status-dot"></div> Active</div>
-                </div>
-                <h3>PosIND Data Cleanser</h3>
-                <p>Automated solution for cleaning and organizing Tax Deduction files, Mile App PODs, and PRANPP data.</p>
-            </a>
-
-            <a href="https://tarif.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
-                <div class="card-header">
-                    <div class="icon-box"><i data-lucide="receipt"></i></div>
-                    <div class="status-badge"><div class="status-dot"></div> Active</div>
-                </div>
-                <h3>Bulk Tariff Template</h3>
-                <p>Efficient Mile App tariff template generator tailored specifically for tariff administration needs.</p>
-            </a>
-
-            <a href="https://myrep.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
-                <div class="card-header">
-                    <div class="icon-box"><i data-lucide="wifi"></i></div>
-                    <div class="status-badge"><div class="status-dot"></div> Active</div>
-                </div>
-                <h3>MyRepublic Batch Gen</h3>
-                <p>Automated shipment entry generator that converts HTML portal files into ready-to-use batch data.</p>
-            </a>
-
-            <a href="https://refcard.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
-                <div class="card-header">
-                    <div class="icon-box"><i data-lucide="qr-code"></i></div>
-                    <div class="status-badge"><div class="status-dot"></div> Active</div>
-                </div>
-                <h3>Referral Card Generator</h3>
-                <p>Digital referral card creator for Hajj & Umrah Cargo, featuring an instant high-precision QR Code.</p>
-            </a>
-
-            <a href="https://mile.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
-                <div class="card-header">
-                    <div class="icon-box"><i data-lucide="file-cog"></i></div>
-                    <div class="status-badge"><div class="status-dot"></div> Active</div>
-                </div>
-                <h3>Mile App Bulk Converter</h3>
-                <p>A smart web utility that bridges AI OCR extractions with logistics systems and formats raw spreadsheet data.</p>
-            </a>
-
-            <a href="https://mailon.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
-                <div class="card-header">
-                    <div class="icon-box"><i data-lucide="search"></i></div>
-                    <div class="status-badge"><div class="status-dot"></div> Active</div>
-                </div>
-                <h3>Postcard Tariff Search</h3>
-                <p>Lightning-fast postal tariff finder to check both domestic and international postcard rates from Batam.</p>
-            </a>
+        <!-- UI SEARCH BAR -->
+        <div class="search-wrapper">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search for tools, spaces, or keywords..." autocomplete="off">
+            <i data-lucide="search" class="search-icon w-5 h-5"></i>
+            <i data-lucide="x" id="clearSearch" class="search-clear w-5 h-5"></i>
+            <kbd class="kbd-shortcut">/</kbd>
         </div>
 
-        <div class="section-title">
-            <i data-lucide="folder-lock"></i> Private Spaces
+        <!-- STATE JIKA HASIL PENCARIAN KOSONG -->
+        <div id="noResults" class="no-results">
+            <i data-lucide="folder-search" class="mx-auto"></i>
+            <h3>No results found</h3>
+            <p>Try adjusting your search or typing different keywords.</p>
         </div>
 
-        <div class="grid">
-            <a href="https://kost.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
-                <div class="card-header">
-                    <div class="icon-box"><i data-lucide="home"></i></div>
-                    <div class="status-badge"><div class="status-dot"></div> Active</div>
-                </div>
-                <h3>Kost Ibu Rahmi</h3>
-                <p>Personal digital promotion project for Boarding House, complete with an image gallery and pricing list.</p>
-            </a>
+        <!-- SECTION 1 -->
+        <div class="section-wrapper" id="section-logistics">
+            <div class="section-title">
+                <i data-lucide="layers"></i> Enterprise Logistics Tools
+            </div>
+            <div class="grid">
+                <a href="https://lacak.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
+                    <div class="card-header">
+                        <div class="icon-box"><i data-lucide="map-pin"></i></div>
+                        <div class="status-badge"><div class="status-dot"></div> Active</div>
+                    </div>
+                    <h3>PosIND Track & Trace</h3>
+                    <p>Comprehensive tracking tool featuring photo evidence and map locations for corporate shipment updates.</p>
+                </a>
 
-            <a href="https://menteng.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
-                <div class="card-header">
-                    <div class="icon-box"><i data-lucide="building"></i></div>
-                    <div class="status-badge"><div class="status-dot"></div> Active</div>
-                </div>
-                <h3>Menteng Indah Residence</h3>
-                <p>Digital landing page for a minimalist 3-bedroom house for rent, featuring an interactive gallery and facility details.</p>
-            </a>
+                <a href="https://hs.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
+                    <div class="card-header">
+                        <div class="icon-box"><i data-lucide="search-code"></i></div>
+                        <div class="status-badge"><div class="status-dot"></div> Active</div>
+                    </div>
+                    <h3>AI HS Code Automation</h3>
+                    <p>AI-powered Harmonized System (BTKI) code assistant, featuring a self-learning dictionary.</p>
+                </a>
 
-            <!-- Kartu Baru untuk Website Mailon Cafe -->
-            <a href="https://mailon-cafe.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
-                <div class="card-header">
-                    <div class="icon-box"><i data-lucide="coffee"></i></div>
-                    <div class="status-badge"><div class="status-dot"></div> Active</div>
-                </div>
-                <h3>Mailon Artisan Cafe</h3>
-                <p>Digital storefront for an artisan dessert cafe that harmonizes sweet delicacies with a classic postal aesthetic.</p>
-            </a>
+                <a href="https://sapx.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
+                    <div class="card-header">
+                        <div class="icon-box"><i data-lucide="database-zap"></i></div>
+                        <div class="status-badge"><div class="status-dot"></div> Active</div>
+                    </div>
+                    <h3>SAP to Mile Converter</h3>
+                    <p>Converts SAP Excel data into Mile App templates to optimize data entry and minimize human error.</p>
+                </a>
+
+                <a href="https://cba.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
+                    <div class="card-header">
+                        <div class="icon-box"><i data-lucide="calculator"></i></div>
+                        <div class="status-badge"><div class="status-dot"></div> Active</div>
+                    </div>
+                    <h3>CBA Pricing Calculator</h3>
+                    <p>Fast and precise Cost-Based Analysis tool for evaluating costs and profit margins in logistics deals.</p>
+                </a>
+
+                <a href="https://clean.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
+                    <div class="card-header">
+                        <div class="icon-box"><i data-lucide="sparkles"></i></div>
+                        <div class="status-badge"><div class="status-dot"></div> Active</div>
+                    </div>
+                    <h3>PosIND Data Cleanser</h3>
+                    <p>Automated solution for cleaning and organizing Tax Deduction files, Mile App PODs, and PRANPP data.</p>
+                </a>
+
+                <a href="https://tarif.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
+                    <div class="card-header">
+                        <div class="icon-box"><i data-lucide="receipt"></i></div>
+                        <div class="status-badge"><div class="status-dot"></div> Active</div>
+                    </div>
+                    <h3>Bulk Tariff Template</h3>
+                    <p>Efficient Mile App tariff template generator tailored specifically for tariff administration needs.</p>
+                </a>
+
+                <a href="https://myrep.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
+                    <div class="card-header">
+                        <div class="icon-box"><i data-lucide="wifi"></i></div>
+                        <div class="status-badge"><div class="status-dot"></div> Active</div>
+                    </div>
+                    <h3>MyRepublic Batch Gen</h3>
+                    <p>Automated shipment entry generator that converts HTML portal files into ready-to-use batch data.</p>
+                </a>
+
+                <a href="https://refcard.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
+                    <div class="card-header">
+                        <div class="icon-box"><i data-lucide="qr-code"></i></div>
+                        <div class="status-badge"><div class="status-dot"></div> Active</div>
+                    </div>
+                    <h3>Referral Card Generator</h3>
+                    <p>Digital referral card creator for Hajj & Umrah Cargo, featuring an instant high-precision QR Code.</p>
+                </a>
+
+                <a href="https://mile.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
+                    <div class="card-header">
+                        <div class="icon-box"><i data-lucide="file-cog"></i></div>
+                        <div class="status-badge"><div class="status-dot"></div> Active</div>
+                    </div>
+                    <h3>Mile App Bulk Converter</h3>
+                    <p>A smart web utility that bridges AI OCR extractions with logistics systems and formats raw spreadsheet data.</p>
+                </a>
+
+                <a href="https://mailon.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
+                    <div class="card-header">
+                        <div class="icon-box"><i data-lucide="search"></i></div>
+                        <div class="status-badge"><div class="status-dot"></div> Active</div>
+                    </div>
+                    <h3>Postcard Tariff Search</h3>
+                    <p>Lightning-fast postal tariff finder to check both domestic and international postcard rates from Batam.</p>
+                </a>
+            </div>
         </div>
+
+        <!-- SECTION 2 -->
+        <div class="section-wrapper" id="section-private">
+            <div class="section-title">
+                <i data-lucide="folder-lock"></i> Private Spaces
+            </div>
+            <div class="grid">
+                <!-- IDX Portfolio Tracker Card -->
+                <a href="https://idx.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
+                    <div class="card-header">
+                        <div class="icon-box"><i data-lucide="line-chart"></i></div>
+                        <div class="status-badge"><div class="status-dot"></div> Active</div>
+                    </div>
+                    <h3>IDX Portfolio Tracker</h3>
+                    <p>A real-time financial dashboard to track and compare personal stock portfolio performance against IHSG and LQ45 benchmarks.</p>
+                </a>
+
+                <a href="https://kost.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
+                    <div class="card-header">
+                        <div class="icon-box"><i data-lucide="home"></i></div>
+                        <div class="status-badge"><div class="status-dot"></div> Active</div>
+                    </div>
+                    <h3>Kost Ibu Rahmi</h3>
+                    <p>Personal digital promotion project for Boarding House, complete with an image gallery and pricing list.</p>
+                </a>
+
+                <a href="https://menteng.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
+                    <div class="card-header">
+                        <div class="icon-box"><i data-lucide="building"></i></div>
+                        <div class="status-badge"><div class="status-dot"></div> Active</div>
+                    </div>
+                    <h3>Menteng Indah Residence</h3>
+                    <p>Digital landing page for a minimalist 3-bedroom house for rent, featuring an interactive gallery and facility details.</p>
+                </a>
+
+                <a href="https://mailon-cafe.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
+                    <div class="card-header">
+                        <div class="icon-box"><i data-lucide="coffee"></i></div>
+                        <div class="status-badge"><div class="status-dot"></div> Active</div>
+                    </div>
+                    <h3>Mailon Artisan Cafe</h3>
+                    <p>Digital storefront for an artisan dessert cafe that harmonizes sweet delicacies with a classic postal aesthetic.</p>
+                </a>
+            </div>
+        </div>
+
     </div>
 </div>
 
@@ -495,6 +647,96 @@
 <script>
     // Initialize Lucide Icons
     lucide.createIcons();
+
+    // LOGIKA FITUR SEARCH TERBAIK
+    document.addEventListener('DOMContentLoaded', () => {
+        const searchInput = document.getElementById('searchInput');
+        const clearBtn = document.getElementById('clearSearch');
+        const kbdHint = document.querySelector('.kbd-shortcut');
+        const noResults = document.getElementById('noResults');
+        const sectionWrappers = document.querySelectorAll('.section-wrapper');
+
+        // Fungsi Pencarian Inti
+        const performSearch = () => {
+            const query = searchInput.value.toLowerCase().trim();
+            
+            // Toggle visibility UI Search bar
+            if (query.length > 0) {
+                clearBtn.style.display = 'block';
+                if(kbdHint) kbdHint.style.opacity = '0';
+            } else {
+                clearBtn.style.display = 'none';
+                if(kbdHint && document.activeElement !== searchInput) kbdHint.style.opacity = '1';
+            }
+
+            let totalVisibleCards = 0;
+
+            // Loop ke setiap Section
+            sectionWrappers.forEach(section => {
+                let sectionVisibleCards = 0;
+                const cards = section.querySelectorAll('.card');
+
+                // Loop ke setiap Kartu di dalam Section
+                cards.forEach(card => {
+                    const title = card.querySelector('h3').textContent.toLowerCase();
+                    const desc = card.querySelector('p').textContent.toLowerCase();
+
+                    if (title.includes(query) || desc.includes(query)) {
+                        card.style.display = 'flex';
+                        sectionVisibleCards++;
+                        totalVisibleCards++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                // Sembunyikan Header Section Jika Tidak Ada Kartu yang Cocok
+                if (sectionVisibleCards > 0) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+
+            // Tampilkan "No Results" Jika Semua Kartu Hilang
+            if (totalVisibleCards === 0) {
+                noResults.style.display = 'block';
+            } else {
+                noResults.style.display = 'none';
+            }
+        };
+
+        // Event Listeners
+        searchInput.addEventListener('input', performSearch);
+
+        clearBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            performSearch();
+            searchInput.focus();
+        });
+
+        // Keyboard Shortcut: Tekan '/' untuk Fokus ke Kolom Search
+        document.addEventListener('keydown', (e) => {
+            if (e.key === '/' && document.activeElement !== searchInput) {
+                e.preventDefault(); // Mencegah huruf '/' terketik
+                searchInput.focus();
+            }
+            // Tekan 'Escape' untuk menghapus dan blur
+            if (e.key === 'Escape' && document.activeElement === searchInput) {
+                searchInput.value = '';
+                performSearch();
+                searchInput.blur();
+            }
+        });
+        
+        // Atur transparansi KBD hint saat fokus
+        searchInput.addEventListener('focus', () => {
+            if(kbdHint) kbdHint.style.opacity = '0';
+        });
+        searchInput.addEventListener('blur', () => {
+            if(kbdHint && searchInput.value.length === 0) kbdHint.style.opacity = '1';
+        });
+    });
 </script>
 </body>
 </html>
