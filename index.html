@@ -5,13 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PosNew Hub by Ikhsan Radiansyah | Enterprise Logistics</title>
     
-    <!-- Enhanced SEO Optimization -->
     <meta name="description" content="PosNew Hub is an enterprise logistics portal developed by Ikhsan Radiansyah. It provides essential tools like Tracking, AI HS Code, CBA Calculator, Mile App bulk converters, and more for B2B and Retail efficiency.">
     <meta name="keywords" content="logistics, pos indonesia, tracking, hs code, mile app, cba calculator, batam ftz, ikhsan radiansyah, corporate logistics tools, data converter">
     <meta name="author" content="Ikhsan Radiansyah">
     <meta name="robots" content="index, follow">
 
-    <!-- Open Graph for Social Media Sharing -->
     <meta property="og:title" content="PosNew Hub | Enterprise Logistics Portal by Ikhsan Radiansyah">
     <meta property="og:description" content="An integrated utility portal to accelerate B2B and Retail logistics operations, from tracking to bulk data conversion.">
     <meta property="og:type" content="website">
@@ -40,10 +38,16 @@
             font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
+        /* FIX UNTUK WHITE SPACE DI MOBILE */
+        html {
+            background-color: var(--bg-dark);
+            overscroll-behavior-y: none;
+        }
+
         body {
             background-color: var(--bg-dark);
             color: var(--text-main);
-            min-height: 100vh;
+            min-height: 100dvh; /* FIX UNTUK ADDRESS BAR MOBILE */
             display: flex;
             flex-direction: column;
             background-image: 
@@ -471,7 +475,6 @@
             <p>The new era of streamlined logistics and corporate operations. Select a workspace to begin.</p>
         </header>
 
-        <!-- UI SEARCH BAR -->
         <div class="search-wrapper">
             <input type="text" id="searchInput" class="search-input" placeholder="Search for tools, spaces, or keywords..." autocomplete="off">
             <i data-lucide="search" class="search-icon w-5 h-5"></i>
@@ -479,14 +482,12 @@
             <kbd class="kbd-shortcut">/</kbd>
         </div>
 
-        <!-- STATE JIKA HASIL PENCARIAN KOSONG -->
         <div id="noResults" class="no-results">
             <i data-lucide="folder-search" class="mx-auto"></i>
             <h3>No results found</h3>
             <p>Try adjusting your search or typing different keywords.</p>
         </div>
 
-        <!-- SECTION 1 -->
         <div class="section-wrapper" id="section-logistics">
             <div class="section-title">
                 <i data-lucide="layers"></i> Enterprise Logistics Tools
@@ -593,13 +594,11 @@
             </div>
         </div>
 
-        <!-- SECTION 2 -->
         <div class="section-wrapper" id="section-private">
             <div class="section-title">
                 <i data-lucide="folder-lock"></i> Private Spaces
             </div>
             <div class="grid">
-                <!-- IDX Portfolio Tracker Card -->
                 <a href="https://idx.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
                     <div class="card-header">
                         <div class="icon-box"><i data-lucide="line-chart"></i></div>
