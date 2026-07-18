@@ -47,7 +47,7 @@
         body {
             background-color: var(--bg-dark);
             color: var(--text-main);
-            min-height: 100dvh; /* FIX UNTUK ADDRESS BAR MOBILE */
+            min-height: 100dvh;
             display: flex;
             flex-direction: column;
             background-image: 
@@ -450,7 +450,7 @@
             .footer-desc { display: none; }
             header h1 { font-size: 2rem; }
             .search-wrapper { margin-bottom: 2.5rem; }
-            .kbd-shortcut { display: none; } /* Hide shortcut on mobile */
+            .kbd-shortcut { display: none; } 
         }
     </style>
 </head>
@@ -493,6 +493,17 @@
                 <i data-lucide="layers"></i> Enterprise Logistics Tools
             </div>
             <div class="grid">
+                
+                <!-- SMART COLLAGE PRO TELAH DITAMBAHKAN DI SINI -->
+                <a href="https://kolase.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
+                    <div class="card-header">
+                        <div class="icon-box"><i data-lucide="layout-template"></i></div>
+                        <div class="status-badge"><div class="status-dot"></div> Active</div>
+                    </div>
+                    <h3>Smart Collage Pro</h3>
+                    <p>Intelligent image layout generator specifically designed to align and scale corporate publication imagery automatically.</p>
+                </a>
+                
                 <a href="https://lacak.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
                     <div class="card-header">
                         <div class="icon-box"><i data-lucide="map-pin"></i></div>
@@ -653,10 +664,8 @@
 </footer>
 
 <script>
-    // Initialize Lucide Icons
     lucide.createIcons();
 
-    // LOGIKA FITUR SEARCH TERBAIK
     document.addEventListener('DOMContentLoaded', () => {
         const searchInput = document.getElementById('searchInput');
         const clearBtn = document.getElementById('clearSearch');
@@ -664,11 +673,9 @@
         const noResults = document.getElementById('noResults');
         const sectionWrappers = document.querySelectorAll('.section-wrapper');
 
-        // Fungsi Pencarian Inti
         const performSearch = () => {
             const query = searchInput.value.toLowerCase().trim();
             
-            // Toggle visibility UI Search bar
             if (query.length > 0) {
                 clearBtn.style.display = 'block';
                 if(kbdHint) kbdHint.style.opacity = '0';
@@ -679,12 +686,10 @@
 
             let totalVisibleCards = 0;
 
-            // Loop ke setiap Section
             sectionWrappers.forEach(section => {
                 let sectionVisibleCards = 0;
                 const cards = section.querySelectorAll('.card');
 
-                // Loop ke setiap Kartu di dalam Section
                 cards.forEach(card => {
                     const title = card.querySelector('h3').textContent.toLowerCase();
                     const desc = card.querySelector('p').textContent.toLowerCase();
@@ -698,7 +703,6 @@
                     }
                 });
 
-                // Sembunyikan Header Section Jika Tidak Ada Kartu yang Cocok
                 if (sectionVisibleCards > 0) {
                     section.style.display = 'block';
                 } else {
@@ -706,7 +710,6 @@
                 }
             });
 
-            // Tampilkan "No Results" Jika Semua Kartu Hilang
             if (totalVisibleCards === 0) {
                 noResults.style.display = 'block';
             } else {
@@ -714,7 +717,6 @@
             }
         };
 
-        // Event Listeners
         searchInput.addEventListener('input', performSearch);
 
         clearBtn.addEventListener('click', () => {
@@ -723,13 +725,11 @@
             searchInput.focus();
         });
 
-        // Keyboard Shortcut: Tekan '/' untuk Fokus ke Kolom Search
         document.addEventListener('keydown', (e) => {
             if (e.key === '/' && document.activeElement !== searchInput) {
-                e.preventDefault(); // Mencegah huruf '/' terketik
+                e.preventDefault();
                 searchInput.focus();
             }
-            // Tekan 'Escape' untuk menghapus dan blur
             if (e.key === 'Escape' && document.activeElement === searchInput) {
                 searchInput.value = '';
                 performSearch();
@@ -737,7 +737,6 @@
             }
         });
         
-        // Atur transparansi KBD hint saat fokus
         searchInput.addEventListener('focus', () => {
             if(kbdHint) kbdHint.style.opacity = '0';
         });
