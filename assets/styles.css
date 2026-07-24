@@ -436,6 +436,8 @@ button { color: inherit; }
 .tool-card:hover { transform: translateY(-5px); border-color: var(--orange-border); box-shadow: var(--shadow-sm); background: linear-gradient(150deg, var(--surface-hover), var(--surface-strong)); }
 .tool-card:focus-visible { outline: 3px solid var(--orange-soft); outline-offset: 3px; border-color: var(--orange); }
 .tool-card[hidden] { display: none; }
+.tool-card-featured { position: relative; border-color: var(--orange-border); background: linear-gradient(150deg, var(--orange-soft), var(--surface-strong)); }
+.tool-card-featured::after { content: "NEW"; position: absolute; top: -8px; left: 18px; padding: 3px 8px; border: 1px solid var(--orange-border); border-radius: 999px; background: var(--orange); color: white; font-size: .56rem; font-weight: 900; letter-spacing: .08em; box-shadow: 0 5px 14px rgba(246,85,35,.2); }
 .card-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
 .card-icon { width: 44px; height: 44px; display: grid; place-items: center; border: 1px solid var(--border); border-radius: 13px; background: var(--surface-soft); color: var(--orange); transition: .25s ease; }
 .card-icon svg { width: 21px; height: 21px; }

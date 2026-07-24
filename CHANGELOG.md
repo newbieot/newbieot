@@ -1,5 +1,11 @@
 # Redesign summary
 
+## Latest update — Standard Parcel tariff
+- Added `https://tarifppb.posnew.com/` to Quick Launch and the main workspace directory.
+- Added customer-facing copy explaining coverage for Batam and Tanjungpinang.
+- Updated workspace statistics, search keywords, metadata, and sitemap.
+- Highlighted the new tariff tool as a featured logistics and pricing workspace.
+
 ## Interface and experience
 - Rebuilt the homepage as a modern logistics command center.
 - Added quick-launch shortcuts for frequently used workspaces.
