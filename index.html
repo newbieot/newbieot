@@ -1,749 +1,282 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PosNew Hub by Ikhsan Radiansyah | Enterprise Logistics</title>
-    
-    <meta name="description" content="PosNew Hub is an enterprise logistics portal developed by Ikhsan Radiansyah. It provides essential tools like Tracking, AI HS Code, CBA Calculator, Mile App bulk converters, and more for B2B and Retail efficiency.">
-    <meta name="keywords" content="logistics, pos indonesia, tracking, hs code, mile app, cba calculator, batam ftz, ikhsan radiansyah, corporate logistics tools, data converter">
+    <meta name="theme-color" content="#080c14">
+    <meta name="color-scheme" content="dark light">
+    <title>PosNew Hub | Logistics Tools & Business Automation</title>
+    <meta name="description" content="PosNew Hub is an independent logistics productivity portal by Ikhsan Radiansyah, featuring tracking, HS Code, route optimization, pricing, data conversion, and business automation tools.">
+    <meta name="keywords" content="PosNew Hub, logistics tools, Pos Indonesia, shipment tracking, HS Code, CBA calculator, Mile App, business automation, Batam logistics">
     <meta name="author" content="Ikhsan Radiansyah">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="/">
 
-    <meta property="og:title" content="PosNew Hub | Enterprise Logistics Portal by Ikhsan Radiansyah">
-    <meta property="og:description" content="An integrated utility portal to accelerate B2B and Retail logistics operations, from tracking to bulk data conversion.">
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="PosNew Hub">
+    <meta property="og:title" content="PosNew Hub | Logistics Tools & Business Automation">
+    <meta property="og:description" content="A unified command center for logistics utilities, business automation, tracking, pricing, and data workflows.">
     <meta property="og:url" content="https://posnew.com/">
-    
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        :root {
-            --pos-orange: #FF5722; 
-            --pos-orange-glow: rgba(255, 87, 34, 0.15);
-            --pos-orange-hover: rgba(255, 87, 34, 0.25);
-            --bg-dark: #090e17;
-            --card-bg: rgba(15, 23, 42, 0.6);
-            --card-border: rgba(255, 255, 255, 0.06);
-            --text-main: #f8fafc;
-            --text-dim: #94a3b8;
-            --success-green: #10b981;
-        }
+    <meta property="og:image" content="https://posnew.com/og-cover.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="PosNew Hub logistics productivity portal">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PosNew Hub | Logistics Tools & Business Automation">
+    <meta name="twitter:description" content="A unified command center for logistics utilities and business automation.">
+    <meta name="twitter:image" content="https://posnew.com/og-cover.png">
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        }
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="assets/styles.css">
 
-        /* FIX UNTUK WHITE SPACE DI MOBILE */
-        html {
-            background-color: var(--bg-dark);
-            overscroll-behavior-y: none;
-        }
+    <script>
+        try {
+            const savedTheme = localStorage.getItem('posnew-theme');
+            const preferred = savedTheme || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+            document.documentElement.dataset.theme = preferred;
+        } catch (_) {}
+    </script>
+    <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+    <script defer src="assets/app.js"></script>
 
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            min-height: 100dvh;
-            display: flex;
-            flex-direction: column;
-            background-image: 
-                radial-gradient(circle at 15% 50%, rgba(255, 87, 34, 0.05), transparent 25%),
-                radial-gradient(circle at 85% 30%, rgba(30, 58, 138, 0.15), transparent 25%),
-                radial-gradient(circle at top right, #111827, #090e17);
-            background-attachment: fixed;
-            scroll-behavior: smooth;
-        }
-
-        .main-content {
-            flex: 1; 
-            padding: 2rem 1rem;
-            width: 100%;
-        }
-
-        .container {
-            max-width: 1050px;
-            margin: 0 auto;
-        }
-
-        /* Top Navigation Bar */
-        .top-bar {
-            display: flex;
-            justify-content: flex-end;
-            margin-bottom: 1rem;
-        }
-
-        .btn-about {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            color: #f8fafc;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 600;
-            padding: 6px 16px 6px 6px; 
-            border-radius: 30px;
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid var(--card-border);
-            transition: all 0.3s ease;
-            backdrop-filter: blur(12px);
-        }
-
-        .btn-about img {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            object-fit: cover;
-            object-position: top center;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .btn-about:hover {
-            border-color: rgba(255, 87, 34, 0.4);
-            background: rgba(30, 41, 59, 0.8);
-            box-shadow: 0 4px 15px rgba(255, 87, 34, 0.15);
-            transform: translateY(-2px);
-            color: var(--pos-orange);
-        }
-
-        .btn-about:hover img {
-            border-color: var(--pos-orange);
-        }
-
-        /* Modern Header */
-        header {
-            margin-bottom: 2rem;
-            text-align: center;
-            padding-top: 1rem;
-        }
-
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: var(--pos-orange-glow);
-            color: var(--pos-orange);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            margin-bottom: 1.5rem;
-            border: 1px solid rgba(255, 87, 34, 0.2);
-        }
-
-        .pulse-dot {
-            width: 6px;
-            height: 6px;
-            background-color: var(--pos-orange);
-            border-radius: 50%;
-            box-shadow: 0 0 0 0 rgba(255, 87, 34, 0.7);
-            animation: pulse 2s infinite;
-        }
-
-        header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            letter-spacing: -1px;
-            margin-bottom: 0.8rem;
-            background: linear-gradient(to right, #ffffff, #cbd5e1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        header p {
-            color: var(--text-dim);
-            font-size: 1.05rem;
-            font-weight: 400;
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        /* SEARCH BAR UI/UX */
-        .search-wrapper {
-            max-width: 650px;
-            margin: 0 auto 4rem auto;
-            position: relative;
-            z-index: 10;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 1.2rem 3.5rem 1.2rem 3rem;
-            background: rgba(15, 23, 42, 0.7);
-            border: 1px solid var(--card-border);
-            border-radius: 100px;
-            color: var(--text-main);
-            font-size: 1.05rem;
-            outline: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(12px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .search-input::placeholder {
-            color: rgba(148, 163, 184, 0.6);
-        }
-
-        .search-input:focus {
-            border-color: var(--pos-orange);
-            box-shadow: 0 0 0 4px rgba(255, 87, 34, 0.15), 0 10px 30px rgba(0, 0, 0, 0.3);
-            background: rgba(30, 41, 59, 0.9);
-            transform: translateY(-2px);
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 1.2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-dim);
-            pointer-events: none;
-            transition: color 0.3s ease;
-        }
-
-        .search-input:focus ~ .search-icon {
-            color: var(--pos-orange);
-        }
-
-        .search-clear {
-            position: absolute;
-            right: 1.2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-dim);
-            cursor: pointer;
-            display: none;
-            transition: all 0.2s ease;
-            padding: 4px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .search-clear:hover { 
-            color: #ffffff; 
-            background: var(--pos-orange);
-        }
-
-        .kbd-shortcut {
-            position: absolute;
-            right: 1.2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 6px;
-            padding: 4px 8px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--text-dim);
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .search-input:focus ~ .kbd-shortcut {
-            opacity: 0;
-        }
-
-        /* EMPTY STATE UI */
-        .no-results {
-            text-align: center;
-            padding: 4rem 2rem;
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .no-results i {
-            color: rgba(255, 255, 255, 0.2);
-            margin-bottom: 1rem;
-            width: 48px;
-            height: 48px;
-        }
-
-        .no-results h3 {
-            font-size: 1.25rem;
-            color: #ffffff;
-            margin-bottom: 0.5rem;
-        }
-
-        .no-results p {
-            color: var(--text-dim);
-        }
-
-        /* Section Layout */
-        .section-wrapper {
-            margin-bottom: 4rem;
-            transition: opacity 0.3s ease;
-        }
-
-        .section-title {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 2rem;
-            font-size: 1.15rem;
-            font-weight: 600;
-            color: #ffffff;
-            letter-spacing: 0.5px;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--card-border);
-        }
-
-        .section-title i {
-            color: var(--pos-orange);
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        /* Glassmorphism Cards */
-        .card {
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--card-border);
-            border-radius: 16px;
-            padding: 1.8rem;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-            position: relative;
-            overflow: hidden;
-            animation: fadeIn 0.4s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: transparent;
-            transition: background 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            background: rgba(30, 41, 59, 0.8);
-            border-color: rgba(255, 87, 34, 0.3);
-            box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 87, 34, 0.05);
-        }
-
-        .card:hover::before {
-            background: var(--pos-orange);
-        }
-
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .icon-box {
-            background: var(--card-border);
-            padding: 12px;
-            border-radius: 12px;
-            color: #ffffff;
-            transition: all 0.3s ease;
-        }
-
-        .card:hover .icon-box {
-            background: var(--pos-orange-hover);
-            color: var(--pos-orange);
-        }
-
-        .card h3 {
-            font-size: 1.15rem;
-            font-weight: 600;
-            color: #ffffff;
-        }
-
-        .card p {
-            font-size: 0.9rem;
-            color: var(--text-dim);
-            line-height: 1.5;
-        }
-
-        .status-badge {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.75rem;
-            color: var(--success-green);
-            background: rgba(16, 185, 129, 0.1);
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-weight: 500;
-        }
-
-        .status-dot {
-            width: 6px;
-            height: 6px;
-            background: var(--success-green);
-            border-radius: 50%;
-            box-shadow: 0 0 8px var(--success-green);
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 87, 34, 0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(255, 87, 34, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 87, 34, 0); }
-        }
-
-        /* DASHBOARD FOOTER */
-        .dashboard-footer {
-            width: 100%;
-            box-sizing: border-box;
-            background-color: transparent; 
-            border-top: 1px solid var(--card-border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 40px;
-            margin-top: auto;
-            font-family: 'Inter', 'Segoe UI', sans-serif;
-            z-index: 20;
-            height: 70px;
-            overflow: hidden;
-        }
-        .footer-brand {
-            display: flex; align-items: center; gap: 8px;
-            color: #f8fafc; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.5px;
-            white-space: nowrap; font-family: 'Sora', sans-serif;
-        }
-        .footer-desc { 
-            color: var(--text-dim); font-size: 0.85rem; margin: 0 15px; 
-            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-            text-align: center; flex: 1;
-        }
-        .footer-creator-badge {
-            display: inline-flex; align-items: center; gap: 6px;
-            background: var(--pos-orange-glow); border: 1px solid rgba(255, 87, 34, 0.2);
-            padding: 6px 16px; border-radius: 20px; color: #e2e8f0; font-size: 0.8rem;
-            white-space: nowrap; transition: all 0.3s ease;
-        }
-        .footer-creator-badge:hover { 
-            background: var(--pos-orange-hover); border-color: rgba(255, 87, 34, 0.5); 
-        }
-        .footer-creator-badge strong { color: var(--pos-orange); font-weight: 600; }
-
-        @media (max-width: 850px) {
-            .dashboard-footer { 
-                flex-direction: column; justify-content: center; gap: 10px; 
-                padding: 20px; height: auto; 
-            }
-            .footer-desc { display: none; }
-            header h1 { font-size: 2rem; }
-            .search-wrapper { margin-bottom: 2.5rem; }
-            .kbd-shortcut { display: none; } 
-        }
-    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "PosNew Hub",
+      "url": "https://posnew.com/",
+      "description": "An independent logistics productivity portal featuring tracking, pricing, data conversion, and workflow automation tools.",
+      "creator": {
+        "@type": "Person",
+        "name": "Ikhsan Radiansyah",
+        "url": "https://posnew.com/about-me"
+      }
+    }
+    </script>
 </head>
 <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
 
-<div class="main-content">
-    <div class="container">
-        
-        <div class="top-bar">
-            <a href="https://posnew.com/about-me" class="btn-about">
-                <img src="Ikhsan-Radiansyah.jpg" alt="Ikhsan Radiansyah">
-                <span>About Creator</span>
+    <header class="site-header">
+        <nav class="nav-shell" aria-label="Primary navigation">
+            <a class="brand" href="/" aria-label="PosNew Hub home">
+                <span class="brand-mark"><img src="favicon.svg" alt="" width="25" height="25"></span>
+                <span class="brand-copy">
+                    <span class="brand-name">PosNew Hub</span>
+                    <span class="brand-tagline">Logistics workspace</span>
+                </span>
+            </a>
+
+            <div class="nav-actions">
+                <a class="nav-link" href="#workspaces" aria-current="page"><i data-lucide="layout-grid"></i><span>Workspaces</span></a>
+                <a class="nav-link" href="/about-me"><i data-lucide="user-round"></i><span>About</span></a>
+                <button class="icon-button" type="button" data-theme-toggle aria-label="Switch theme"><i data-lucide="sun"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="page-main" id="main-content">
+        <section class="container hero" aria-labelledby="hero-title">
+            <div class="hero-copy">
+                <div class="eyebrow"><span class="live-dot" aria-hidden="true"></span>Systems operational</div>
+                <h1 id="hero-title">One hub. <span>Smarter logistics</span> workflows.</h1>
+                <p>Launch practical tools for shipment tracking, route planning, pricing, customs classification, bulk conversion, and daily business automation—all from one focused workspace.</p>
+                <div class="hero-actions">
+                    <a class="button button-primary" href="#workspaces"><i data-lucide="rocket"></i>Explore workspaces</a>
+                    <a class="button button-secondary" href="/about-me"><i data-lucide="user-round"></i>Meet the creator</a>
+                </div>
+            </div>
+
+            <aside class="hero-panel" aria-label="Quick launch">
+                <div class="panel-top">
+                    <span class="panel-label">Quick launch</span>
+                    <span class="online-pill"><span class="live-dot" aria-hidden="true"></span>Online</span>
+                </div>
+                <div class="quick-list">
+                    <a class="quick-link" href="https://lacak.posnew.com/" target="_blank" rel="noopener noreferrer">
+                        <span class="quick-icon"><i data-lucide="package-search"></i></span>
+                        <span class="quick-copy"><strong>Track & Trace</strong><span>Shipment updates, proof and map location</span></span>
+                        <i data-lucide="arrow-up-right"></i>
+                    </a>
+                    <a class="quick-link" href="https://hs.posnew.com/" target="_blank" rel="noopener noreferrer">
+                        <span class="quick-icon"><i data-lucide="brain-circuit"></i></span>
+                        <span class="quick-copy"><strong>AI HS Code</strong><span>BTKI classification assistant</span></span>
+                        <i data-lucide="arrow-up-right"></i>
+                    </a>
+                    <a class="quick-link" href="https://clean.posnew.com/" target="_blank" rel="noopener noreferrer">
+                        <span class="quick-icon"><i data-lucide="sparkles"></i></span>
+                        <span class="quick-copy"><strong>Data Cleanser</strong><span>Clean and consolidate operational files</span></span>
+                        <i data-lucide="arrow-up-right"></i>
+                    </a>
+                </div>
+                <div class="stats-row" aria-label="Portal statistics">
+                    <div class="stat"><strong>16</strong><span>active workspaces</span></div>
+                    <div class="stat"><strong>12</strong><span>logistics utilities</span></div>
+                    <div class="stat"><strong>1</strong><span>unified portal</span></div>
+                </div>
+            </aside>
+        </section>
+
+        <section class="container workspace-section" id="workspaces" aria-labelledby="workspace-title">
+            <div class="workspace-head">
+                <div>
+                    <p class="section-kicker">Workspace directory</p>
+                    <h2 id="workspace-title">Choose the right tool</h2>
+                    <p>Search by task or narrow the directory by category. Press <strong>/</strong> anytime to jump to search.</p>
+                </div>
+                <div class="result-count" data-result-count aria-live="polite">16 workspaces available</div>
+            </div>
+
+            <div class="tool-controls">
+                <div class="search-box">
+                    <i data-lucide="search"></i>
+                    <label class="sr-only" for="tool-search" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Search workspaces</label>
+                    <input class="search-input" id="tool-search" type="search" placeholder="Search tracking, pricing, converter..." autocomplete="off" data-tool-search>
+                    <span class="search-shortcut" data-search-shortcut aria-hidden="true">/</span>
+                    <button class="search-clear" type="button" data-search-clear aria-label="Clear search"><i data-lucide="x"></i></button>
+                </div>
+                <div class="filter-row" aria-label="Workspace categories">
+                    <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All</button>
+                    <button class="filter-button" type="button" data-filter="logistics" aria-pressed="false">Logistics</button>
+                    <button class="filter-button" type="button" data-filter="automation" aria-pressed="false">Automation</button>
+                    <button class="filter-button" type="button" data-filter="pricing" aria-pressed="false">Pricing</button>
+                    <button class="filter-button" type="button" data-filter="project" aria-pressed="false">Projects</button>
+                </div>
+            </div>
+
+            <div class="tool-group" data-tool-group>
+                <div class="group-title-row">
+                    <h3 class="group-title"><i data-lucide="briefcase-business"></i>Logistics & corporate tools</h3>
+                    <span class="group-count" data-group-count>12 workspaces</span>
+                </div>
+                <div class="tool-grid">
+                    <a class="tool-card" href="https://kolase.posnew.com/" target="_blank" rel="noopener noreferrer" data-tool-card data-category="automation logistics" data-search="smart collage pro image layout corporate publication automation design">
+                        <div class="card-top"><span class="card-icon"><i data-lucide="images"></i></span><span class="card-status">Active</span></div>
+                        <div class="card-body"><h3>Smart Collage Pro</h3><p>Intelligent image layout generator designed to align and scale corporate publication imagery automatically.</p></div>
+                        <div class="card-bottom"><div class="card-tags"><span class="card-tag">Design</span><span class="card-tag">Automation</span></div><span class="card-open"><i data-lucide="arrow-up-right"></i></span></div>
+                    </a>
+
+                    <a class="tool-card" href="https://lacak.posnew.com/" target="_blank" rel="noopener noreferrer" data-tool-card data-category="logistics" data-search="posind track trace tracking shipment photo evidence map corporate">
+                        <div class="card-top"><span class="card-icon"><i data-lucide="package-search"></i></span><span class="card-status">Active</span></div>
+                        <div class="card-body"><h3>PosIND Track & Trace</h3><p>Comprehensive shipment tracking with photo evidence and map locations for corporate delivery updates.</p></div>
+                        <div class="card-bottom"><div class="card-tags"><span class="card-tag">Tracking</span><span class="card-tag">Logistics</span></div><span class="card-open"><i data-lucide="arrow-up-right"></i></span></div>
+                    </a>
+
+                    <a class="tool-card" href="https://optimize.posnew.com/" target="_blank" rel="noopener noreferrer" data-tool-card data-category="logistics pricing" data-search="posind route optimizer multimodal air land sea route volumetric weight cost">
+                        <div class="card-top"><span class="card-icon"><i data-lucide="route"></i></span><span class="card-status">Active</span></div>
+                        <div class="card-body"><h3>PosIND Route Optimizer</h3><p>Multi-modal logistics calculator for chained air, land, and sea routes with volumetric weight support.</p></div>
+                        <div class="card-bottom"><div class="card-tags"><span class="card-tag">Routes</span><span class="card-tag">Planning</span></div><span class="card-open"><i data-lucide="arrow-up-right"></i></span></div>
+                    </a>
+
+                    <a class="tool-card" href="https://hs.posnew.com/" target="_blank" rel="noopener noreferrer" data-tool-card data-category="logistics automation" data-search="ai hs code automation harmonized system btki customs self learning dictionary batam ftz">
+                        <div class="card-top"><span class="card-icon"><i data-lucide="brain-circuit"></i></span><span class="card-status">Active</span></div>
+                        <div class="card-body"><h3>AI HS Code Automation</h3><p>AI-powered Harmonized System and BTKI classification assistant with a self-learning reference dictionary.</p></div>
+                        <div class="card-bottom"><div class="card-tags"><span class="card-tag">Customs</span><span class="card-tag">AI</span></div><span class="card-open"><i data-lucide="arrow-up-right"></i></span></div>
+                    </a>
+
+                    <a class="tool-card" href="https://sapx.posnew.com/" target="_blank" rel="noopener noreferrer" data-tool-card data-category="logistics automation" data-search="sap mile converter excel template data entry automation">
+                        <div class="card-top"><span class="card-icon"><i data-lucide="file-input"></i></span><span class="card-status">Active</span></div>
+                        <div class="card-body"><h3>SAP to Mile Converter</h3><p>Converts SAP Excel data into Mile App templates to speed up data entry and reduce manual errors.</p></div>
+                        <div class="card-bottom"><div class="card-tags"><span class="card-tag">Converter</span><span class="card-tag">SAP</span></div><span class="card-open"><i data-lucide="arrow-up-right"></i></span></div>
+                    </a>
+
+                    <a class="tool-card" href="https://cba.posnew.com/" target="_blank" rel="noopener noreferrer" data-tool-card data-category="logistics pricing" data-search="cba pricing calculator cost based analysis profit margin logistics deals">
+                        <div class="card-top"><span class="card-icon"><i data-lucide="calculator"></i></span><span class="card-status">Active</span></div>
+                        <div class="card-body"><h3>CBA Pricing Calculator</h3><p>Fast Cost-Based Analysis for evaluating costs and profit margins in corporate logistics opportunities.</p></div>
+                        <div class="card-bottom"><div class="card-tags"><span class="card-tag">Pricing</span><span class="card-tag">Analysis</span></div><span class="card-open"><i data-lucide="arrow-up-right"></i></span></div>
+                    </a>
+
+                    <a class="tool-card" href="https://clean.posnew.com/" target="_blank" rel="noopener noreferrer" data-tool-card data-category="logistics automation" data-search="posind data cleanser tax deduction mile app pod pranpp clean organize files">
+                        <div class="card-top"><span class="card-icon"><i data-lucide="sparkles"></i></span><span class="card-status">Active</span></div>
+                        <div class="card-body"><h3>PosIND Data Cleanser</h3><p>Cleans and organizes Tax Deduction files, Mile App POD records, PRANPP data, and other operational reports.</p></div>
+                        <div class="card-bottom"><div class="card-tags"><span class="card-tag">Data</span><span class="card-tag">Cleanup</span></div><span class="card-open"><i data-lucide="arrow-up-right"></i></span></div>
+                    </a>
+
+                    <a class="tool-card" href="https://tarif.posnew.com/" target="_blank" rel="noopener noreferrer" data-tool-card data-category="logistics automation pricing" data-search="bulk tariff template mile app tariff administration generator">
+                        <div class="card-top"><span class="card-icon"><i data-lucide="receipt-text"></i></span><span class="card-status">Active</span></div>
+                        <div class="card-body"><h3>Bulk Tariff Template</h3><p>Efficient Mile App tariff template generator tailored for bulk tariff administration workflows.</p></div>
+                        <div class="card-bottom"><div class="card-tags"><span class="card-tag">Tariff</span><span class="card-tag">Bulk</span></div><span class="card-open"><i data-lucide="arrow-up-right"></i></span></div>
+                    </a>
+
+                    <a class="tool-card" href="https://myrep.posnew.com/" target="_blank" rel="noopener noreferrer" data-tool-card data-category="logistics automation" data-search="myrepublic batch generator html portal shipment entry batch data">
+                        <div class="card-top"><span class="card-icon"><i data-lucide="wifi"></i></span><span class="card-status">Active</span></div>
+                        <div class="card-body"><h3>MyRepublic Batch Gen</h3><p>Transforms portal HTML files into ready-to-use batch data for automated shipment entry.</p></div>
+                        <div class="card-bottom"><div class="card-tags"><span class="card-tag">Batch</span><span class="card-tag">Converter</span></div><span class="card-open"><i data-lucide="arrow-up-right"></i></span></div>
+                    </a>
+
+                    <a class="tool-card" href="https://refcard.posnew.com/" target="_blank" rel="noopener noreferrer" data-tool-card data-category="logistics automation" data-search="referral card generator hajj umrah cargo qr code digital card">
+                        <div class="card-top"><span class="card-icon"><i data-lucide="qr-code"></i></span><span class="card-status">Active</span></div>
+                        <div class="card-body"><h3>Referral Card Generator</h3><p>Creates digital referral cards for Hajj and Umrah Cargo with instant high-precision QR codes.</p></div>
+                        <div class="card-bottom"><div class="card-tags"><span class="card-tag">QR Code</span><span class="card-tag">Cargo</span></div><span class="card-open"><i data-lucide="arrow-up-right"></i></span></div>
+                    </a>
+
+                    <a class="tool-card" href="https://mile.posnew.com/" target="_blank" rel="noopener noreferrer" data-tool-card data-category="logistics automation" data-search="mile app bulk converter ai ocr spreadsheet logistics system data format">
+                        <div class="card-top"><span class="card-icon"><i data-lucide="file-cog"></i></span><span class="card-status">Active</span></div>
+                        <div class="card-body"><h3>Mile App Bulk Converter</h3><p>Bridges AI OCR extraction and logistics systems by formatting raw spreadsheet data for Mile App.</p></div>
+                        <div class="card-bottom"><div class="card-tags"><span class="card-tag">Mile App</span><span class="card-tag">OCR</span></div><span class="card-open"><i data-lucide="arrow-up-right"></i></span></div>
+                    </a>
+
+                    <a class="tool-card" href="https://mailon.posnew.com/" target="_blank" rel="noopener noreferrer" data-tool-card data-category="logistics pricing" data-search="postcard tariff search domestic international rates batam mailon cafe postage">
+                        <div class="card-top"><span class="card-icon"><i data-lucide="stamp"></i></span><span class="card-status">Active</span></div>
+                        <div class="card-body"><h3>Postcard Tariff Search</h3><p>Fast postal tariff lookup for domestic and international postcard shipments originating from Batam.</p></div>
+                        <div class="card-bottom"><div class="card-tags"><span class="card-tag">Tariff</span><span class="card-tag">Postcard</span></div><span class="card-open"><i data-lucide="arrow-up-right"></i></span></div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="tool-group" data-tool-group>
+                <div class="group-title-row">
+                    <h3 class="group-title"><i data-lucide="panels-top-left"></i>Independent projects</h3>
+                    <span class="group-count" data-group-count>4 workspaces</span>
+                </div>
+                <div class="tool-grid">
+                    <a class="tool-card" href="https://idx.posnew.com/" target="_blank" rel="noopener noreferrer" data-tool-card data-category="project" data-search="idx portfolio tracker stock ihsg lq45 finance dashboard">
+                        <div class="card-top"><span class="card-icon"><i data-lucide="chart-no-axes-combined"></i></span><span class="card-status">Active</span></div>
+                        <div class="card-body"><h3>IDX Portfolio Tracker</h3><p>Financial dashboard for comparing personal stock portfolio performance with IHSG and LQ45 benchmarks.</p></div>
+                        <div class="card-bottom"><div class="card-tags"><span class="card-tag">Finance</span><span class="card-tag">Dashboard</span></div><span class="card-open"><i data-lucide="arrow-up-right"></i></span></div>
+                    </a>
+
+                    <a class="tool-card" href="https://kost.posnew.com/" target="_blank" rel="noopener noreferrer" data-tool-card data-category="project" data-search="kost ibu rahmi boarding house gallery pricing rent property">
+                        <div class="card-top"><span class="card-icon"><i data-lucide="house"></i></span><span class="card-status">Active</span></div>
+                        <div class="card-body"><h3>Kost Ibu Rahmi</h3><p>Digital promotion page for a boarding house, complete with a property gallery and pricing information.</p></div>
+                        <div class="card-bottom"><div class="card-tags"><span class="card-tag">Property</span><span class="card-tag">Landing page</span></div><span class="card-open"><i data-lucide="arrow-up-right"></i></span></div>
+                    </a>
+
+                    <a class="tool-card" href="https://menteng.posnew.com/" target="_blank" rel="noopener noreferrer" data-tool-card data-category="project" data-search="menteng indah residence house rent gallery facilities property">
+                        <div class="card-top"><span class="card-icon"><i data-lucide="building-2"></i></span><span class="card-status">Active</span></div>
+                        <div class="card-body"><h3>Menteng Indah Residence</h3><p>Property landing page for a minimalist three-bedroom house with an interactive gallery and facility details.</p></div>
+                        <div class="card-bottom"><div class="card-tags"><span class="card-tag">Property</span><span class="card-tag">Gallery</span></div><span class="card-open"><i data-lucide="arrow-up-right"></i></span></div>
+                    </a>
+
+                    <a class="tool-card" href="https://mailon-cafe.posnew.com/" target="_blank" rel="noopener noreferrer" data-tool-card data-category="project" data-search="mailon artisan cafe dessert storefront postal aesthetic food beverage">
+                        <div class="card-top"><span class="card-icon"><i data-lucide="coffee"></i></span><span class="card-status">Active</span></div>
+                        <div class="card-body"><h3>Mailon Artisan Cafe</h3><p>Digital storefront for an artisan dessert cafe that blends sweet delicacies with a classic postal aesthetic.</p></div>
+                        <div class="card-bottom"><div class="card-tags"><span class="card-tag">Cafe</span><span class="card-tag">Storefront</span></div><span class="card-open"><i data-lucide="arrow-up-right"></i></span></div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="no-results" data-no-results aria-live="polite">
+                <i data-lucide="search-x"></i>
+                <h3>No matching workspace</h3>
+                <p>Try another keyword or choose a different category.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-shell">
+            <div class="footer-brand"><i data-lucide="layers-3"></i>PosNew Hub</div>
+            <p class="footer-caption">Independent tools built to simplify B2B and retail logistics workflows.</p>
+            <a class="footer-credit" href="/about-me" aria-label="About Ikhsan Radiansyah">
+                <i data-lucide="code-2"></i><span>Built by</span> <strong>Ikhsan Radiansyah</strong> · <span data-current-year>2026</span>
             </a>
         </div>
-
-        <header>
-            <div class="badge">
-                <div class="pulse-dot"></div>
-                SYSTEM ONLINE
-            </div>
-            <h1>PosNew Hub</h1>
-            <p>The new era of streamlined logistics and corporate operations. Select a workspace to begin.</p>
-        </header>
-
-        <div class="search-wrapper">
-            <input type="text" id="searchInput" class="search-input" placeholder="Search for tools, spaces, or keywords..." autocomplete="off">
-            <i data-lucide="search" class="search-icon w-5 h-5"></i>
-            <i data-lucide="x" id="clearSearch" class="search-clear w-5 h-5"></i>
-            <kbd class="kbd-shortcut">/</kbd>
-        </div>
-
-        <div id="noResults" class="no-results">
-            <i data-lucide="folder-search" class="mx-auto"></i>
-            <h3>No results found</h3>
-            <p>Try adjusting your search or typing different keywords.</p>
-        </div>
-
-        <div class="section-wrapper" id="section-logistics">
-            <div class="section-title">
-                <i data-lucide="layers"></i> Enterprise Logistics Tools
-            </div>
-            <div class="grid">
-                
-                <!-- SMART COLLAGE PRO TELAH DITAMBAHKAN DI SINI -->
-                <a href="https://kolase.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
-                    <div class="card-header">
-                        <div class="icon-box"><i data-lucide="layout-template"></i></div>
-                        <div class="status-badge"><div class="status-dot"></div> Active</div>
-                    </div>
-                    <h3>Smart Collage Pro</h3>
-                    <p>Intelligent image layout generator specifically designed to align and scale corporate publication imagery automatically.</p>
-                </a>
-                
-                <a href="https://lacak.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
-                    <div class="card-header">
-                        <div class="icon-box"><i data-lucide="map-pin"></i></div>
-                        <div class="status-badge"><div class="status-dot"></div> Active</div>
-                    </div>
-                    <h3>PosIND Track & Trace</h3>
-                    <p>Comprehensive tracking tool featuring photo evidence and map locations for corporate shipment updates.</p>
-                </a>
-
-                <a href="https://optimize.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
-                    <div class="card-header">
-                        <div class="icon-box"><i data-lucide="route"></i></div>
-                        <div class="status-badge"><div class="status-dot"></div> Active</div>
-                    </div>
-                    <h3>PosIND Route Optimizer</h3>
-                    <p>Advanced multi-modal logistics calculator. Features universal chaining for Air, Land, Sea routes, volumetric weight analysis, and automated corporate Excel generation.</p>
-                </a>
-
-                <a href="https://hs.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
-                    <div class="card-header">
-                        <div class="icon-box"><i data-lucide="search-code"></i></div>
-                        <div class="status-badge"><div class="status-dot"></div> Active</div>
-                    </div>
-                    <h3>AI HS Code Automation</h3>
-                    <p>AI-powered Harmonized System (BTKI) code assistant, featuring a self-learning dictionary.</p>
-                </a>
-
-                <a href="https://sapx.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
-                    <div class="card-header">
-                        <div class="icon-box"><i data-lucide="database-zap"></i></div>
-                        <div class="status-badge"><div class="status-dot"></div> Active</div>
-                    </div>
-                    <h3>SAP to Mile Converter</h3>
-                    <p>Converts SAP Excel data into Mile App templates to optimize data entry and minimize human error.</p>
-                </a>
-
-                <a href="https://cba.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
-                    <div class="card-header">
-                        <div class="icon-box"><i data-lucide="calculator"></i></div>
-                        <div class="status-badge"><div class="status-dot"></div> Active</div>
-                    </div>
-                    <h3>CBA Pricing Calculator</h3>
-                    <p>Fast and precise Cost-Based Analysis tool for evaluating costs and profit margins in logistics deals.</p>
-                </a>
-
-                <a href="https://clean.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
-                    <div class="card-header">
-                        <div class="icon-box"><i data-lucide="sparkles"></i></div>
-                        <div class="status-badge"><div class="status-dot"></div> Active</div>
-                    </div>
-                    <h3>PosIND Data Cleanser</h3>
-                    <p>Automated solution for cleaning and organizing Tax Deduction files, Mile App PODs, and PRANPP data.</p>
-                </a>
-
-                <a href="https://tarif.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
-                    <div class="card-header">
-                        <div class="icon-box"><i data-lucide="receipt"></i></div>
-                        <div class="status-badge"><div class="status-dot"></div> Active</div>
-                    </div>
-                    <h3>Bulk Tariff Template</h3>
-                    <p>Efficient Mile App tariff template generator tailored specifically for tariff administration needs.</p>
-                </a>
-
-                <a href="https://myrep.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
-                    <div class="card-header">
-                        <div class="icon-box"><i data-lucide="wifi"></i></div>
-                        <div class="status-badge"><div class="status-dot"></div> Active</div>
-                    </div>
-                    <h3>MyRepublic Batch Gen</h3>
-                    <p>Automated shipment entry generator that converts HTML portal files into ready-to-use batch data.</p>
-                </a>
-
-                <a href="https://refcard.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
-                    <div class="card-header">
-                        <div class="icon-box"><i data-lucide="qr-code"></i></div>
-                        <div class="status-badge"><div class="status-dot"></div> Active</div>
-                    </div>
-                    <h3>Referral Card Generator</h3>
-                    <p>Digital referral card creator for Hajj & Umrah Cargo, featuring an instant high-precision QR Code.</p>
-                </a>
-
-                <a href="https://mile.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
-                    <div class="card-header">
-                        <div class="icon-box"><i data-lucide="file-cog"></i></div>
-                        <div class="status-badge"><div class="status-dot"></div> Active</div>
-                    </div>
-                    <h3>Mile App Bulk Converter</h3>
-                    <p>A smart web utility that bridges AI OCR extractions with logistics systems and formats raw spreadsheet data.</p>
-                </a>
-
-                <a href="https://mailon.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
-                    <div class="card-header">
-                        <div class="icon-box"><i data-lucide="search"></i></div>
-                        <div class="status-badge"><div class="status-dot"></div> Active</div>
-                    </div>
-                    <h3>Postcard Tariff Search</h3>
-                    <p>Lightning-fast postal tariff finder to check both domestic and international postcard rates from Batam.</p>
-                </a>
-            </div>
-        </div>
-
-        <div class="section-wrapper" id="section-private">
-            <div class="section-title">
-                <i data-lucide="folder-lock"></i> Private Spaces
-            </div>
-            <div class="grid">
-                <a href="https://idx.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
-                    <div class="card-header">
-                        <div class="icon-box"><i data-lucide="line-chart"></i></div>
-                        <div class="status-badge"><div class="status-dot"></div> Active</div>
-                    </div>
-                    <h3>IDX Portfolio Tracker</h3>
-                    <p>A real-time financial dashboard to track and compare personal stock portfolio performance against IHSG and LQ45 benchmarks.</p>
-                </a>
-
-                <a href="https://kost.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
-                    <div class="card-header">
-                        <div class="icon-box"><i data-lucide="home"></i></div>
-                        <div class="status-badge"><div class="status-dot"></div> Active</div>
-                    </div>
-                    <h3>Kost Ibu Rahmi</h3>
-                    <p>Personal digital promotion project for Boarding House, complete with an image gallery and pricing list.</p>
-                </a>
-
-                <a href="https://menteng.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
-                    <div class="card-header">
-                        <div class="icon-box"><i data-lucide="building"></i></div>
-                        <div class="status-badge"><div class="status-dot"></div> Active</div>
-                    </div>
-                    <h3>Menteng Indah Residence</h3>
-                    <p>Digital landing page for a minimalist 3-bedroom house for rent, featuring an interactive gallery and facility details.</p>
-                </a>
-
-                <a href="https://mailon-cafe.posnew.com/" target="_blank" rel="noopener noreferrer" class="card">
-                    <div class="card-header">
-                        <div class="icon-box"><i data-lucide="coffee"></i></div>
-                        <div class="status-badge"><div class="status-dot"></div> Active</div>
-                    </div>
-                    <h3>Mailon Artisan Cafe</h3>
-                    <p>Digital storefront for an artisan dessert cafe that harmonizes sweet delicacies with a classic postal aesthetic.</p>
-                </a>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-<footer class="dashboard-footer">
-    <div class="footer-brand">
-        <i data-lucide="layers" style="color: #FF5722; width: 18px; height: 18px;"></i>
-        PosNew Hub
-    </div>
-    <p class="footer-desc">Independently developed utility system to optimize B2B and Retail logistics efficiency.</p>
-    <div class="footer-creator-badge">
-        <i data-lucide="code-2" style="color: #FF5722; width: 14px; height: 14px;"></i>
-        Built by <strong>Ikhsan Radiansyah</strong> &copy; 2026
-    </div>
-</footer>
-
-<script>
-    lucide.createIcons();
-
-    document.addEventListener('DOMContentLoaded', () => {
-        const searchInput = document.getElementById('searchInput');
-        const clearBtn = document.getElementById('clearSearch');
-        const kbdHint = document.querySelector('.kbd-shortcut');
-        const noResults = document.getElementById('noResults');
-        const sectionWrappers = document.querySelectorAll('.section-wrapper');
-
-        const performSearch = () => {
-            const query = searchInput.value.toLowerCase().trim();
-            
-            if (query.length > 0) {
-                clearBtn.style.display = 'block';
-                if(kbdHint) kbdHint.style.opacity = '0';
-            } else {
-                clearBtn.style.display = 'none';
-                if(kbdHint && document.activeElement !== searchInput) kbdHint.style.opacity = '1';
-            }
-
-            let totalVisibleCards = 0;
-
-            sectionWrappers.forEach(section => {
-                let sectionVisibleCards = 0;
-                const cards = section.querySelectorAll('.card');
-
-                cards.forEach(card => {
-                    const title = card.querySelector('h3').textContent.toLowerCase();
-                    const desc = card.querySelector('p').textContent.toLowerCase();
-
-                    if (title.includes(query) || desc.includes(query)) {
-                        card.style.display = 'flex';
-                        sectionVisibleCards++;
-                        totalVisibleCards++;
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-
-                if (sectionVisibleCards > 0) {
-                    section.style.display = 'block';
-                } else {
-                    section.style.display = 'none';
-                }
-            });
-
-            if (totalVisibleCards === 0) {
-                noResults.style.display = 'block';
-            } else {
-                noResults.style.display = 'none';
-            }
-        };
-
-        searchInput.addEventListener('input', performSearch);
-
-        clearBtn.addEventListener('click', () => {
-            searchInput.value = '';
-            performSearch();
-            searchInput.focus();
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === '/' && document.activeElement !== searchInput) {
-                e.preventDefault();
-                searchInput.focus();
-            }
-            if (e.key === 'Escape' && document.activeElement === searchInput) {
-                searchInput.value = '';
-                performSearch();
-                searchInput.blur();
-            }
-        });
-        
-        searchInput.addEventListener('focus', () => {
-            if(kbdHint) kbdHint.style.opacity = '0';
-        });
-        searchInput.addEventListener('blur', () => {
-            if(kbdHint && searchInput.value.length === 0) kbdHint.style.opacity = '1';
-        });
-    });
-</script>
+    </footer>
 </body>
 </html>

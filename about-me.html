@@ -1,544 +1,206 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080c14">
+    <meta name="color-scheme" content="dark light">
     <title>About Ikhsan Radiansyah | PosNew Hub</title>
-    
-    <!-- PosIND Typography -->
+    <meta name="description" content="Meet Ikhsan Radiansyah, the creator of PosNew Hub and a Corporate Sales Manager at PT Pos Indonesia KCU Batam focused on B2B logistics, partnerships, and process automation.">
+    <meta name="author" content="Ikhsan Radiansyah">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://posnew.com/about-me">
+
+    <meta property="og:type" content="profile">
+    <meta property="og:site_name" content="PosNew Hub">
+    <meta property="og:title" content="About Ikhsan Radiansyah | PosNew Hub">
+    <meta property="og:description" content="Corporate sales, logistics strategy, partnerships, and practical workflow automation.">
+    <meta property="og:url" content="https://posnew.com/about-me">
+    <meta property="og:image" content="https://posnew.com/og-cover.png">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gantari:wght@400;500;600;700;800&family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    
-    <style>
-        :root {
-            --pos-orange: #FF5722; 
-            --pos-orange-glow: rgba(255, 87, 34, 0.15);
-            --pos-orange-hover: rgba(255, 87, 34, 0.25);
-            --bg-dark: #090e17;
-            --card-bg: rgba(15, 23, 42, 0.6);
-            --card-border: rgba(255, 255, 255, 0.06);
-            --text-main: #f8fafc;
-            --text-dim: #94a3b8;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            /* Modern SaaS Mesh Gradient Background from posnew.com */
-            background-image: 
-                radial-gradient(circle at 15% 50%, rgba(255, 87, 34, 0.05), transparent 25%),
-                radial-gradient(circle at 85% 30%, rgba(30, 58, 138, 0.15), transparent 25%),
-                radial-gradient(circle at top right, #111827, #090e17);
-            background-attachment: fixed;
-        }
-
-        /* HEADER */
-        header {
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--card-border);
-            background: rgba(9, 14, 23, 0.8);
-            backdrop-filter: blur(12px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            text-decoration: none;
-            color: var(--text-main);
-        }
-        
-        .header-title {
-            font-family: 'Sora', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-
-        .back-btn {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--text-dim);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            padding: 8px 16px;
-            border-radius: 8px;
-            border: 1px solid var(--card-border);
-            transition: all 0.3s ease;
-        }
-        
-        .back-btn:hover {
-            color: var(--pos-orange);
-            border-color: var(--pos-orange-hover);
-            background: rgba(255, 87, 34, 0.05);
-        }
-
-        /* MAIN CONTENT */
-        .main-wrapper {
-            flex: 1;
-            padding: 40px 20px;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-        }
-
-        .about-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            width: 100%;
-            max-width: 1000px;
-            border-radius: 24px;
-            border: 1px solid var(--card-border);
-            box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.6);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-        
-        .about-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--pos-orange);
-        }
-
-        /* HERO SECTION */
-        .profile-header {
-            padding: 50px 40px;
-            display: flex;
-            align-items: center;
-            gap: 35px;
-            border-bottom: 1px solid var(--card-border);
-        }
-
-        .profile-img-container {
-            width: 150px;
-            height: 150px; 
-            border-radius: 50%; 
-            border: 3px solid rgba(255, 255, 255, 0.1);
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-            flex-shrink: 0;
-            position: relative;
-        }
-        
-        .profile-img-container::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            border-radius: 50%;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
-        }
-        
-        .profile-img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: top center; 
-        }
-
-        .profile-title h1 {
-            font-family: 'Sora', sans-serif;
-            font-size: 2.2rem;
-            font-weight: 800;
-            margin: 0 0 12px 0;
-            background: linear-gradient(to right, #ffffff, #cbd5e1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -1px;
-        }
-
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: var(--pos-orange-glow);
-            color: var(--pos-orange);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            margin-bottom: 12px;
-            border: 1px solid rgba(255, 87, 34, 0.2);
-        }
-
-        .profile-title p.location {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.95rem;
-            color: var(--text-dim);
-            margin: 0;
-            line-height: 1.5;
-        }
-
-        /* TWO COLUMN GRID FOR CONTENT */
-        .content-grid {
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 50px;
-            padding: 40px;
-        }
-
-        .section-title {
-            font-family: 'Sora', sans-serif;
-            color: #ffffff;
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            letter-spacing: 0.5px;
-        }
-
-        .icon-box {
-            background: var(--card-border);
-            padding: 8px;
-            border-radius: 10px;
-            color: var(--pos-orange);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .story-text {
-            font-size: 0.95rem;
-            line-height: 1.8;
-            color: var(--text-dim);
-            margin-bottom: 15px;
-            text-align: justify;
-        }
-        
-        .story-text strong {
-            color: #e2e8f0;
-            font-weight: 600;
-        }
-
-        /* EXPERTISE BADGES */
-        .expertise-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 15px;
-        }
-        
-        .expertise-badge {
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid var(--card-border);
-            color: #cbd5e1;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-        .expertise-badge:hover {
-            border-color: var(--pos-orange);
-            color: #fff;
-        }
-
-        /* CAREER TIMELINE */
-        .timeline {
-            border-left: 2px solid rgba(255, 255, 255, 0.08);
-            padding-left: 25px;
-            margin-left: 10px;
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        .timeline-item {
-            position: relative;
-        }
-
-        .timeline-dot {
-            position: absolute;
-            left: -32px;
-            top: 5px;
-            width: 12px;
-            height: 12px;
-            background: var(--pos-orange);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--pos-orange-glow);
-        }
-
-        .timeline-title { font-size: 1.05rem; font-weight: 700; color: #ffffff; margin-bottom: 4px; }
-        .timeline-company { font-size: 0.85rem; font-weight: 600; color: var(--pos-orange); margin-bottom: 8px; }
-        .timeline-desc { font-size: 0.85rem; color: var(--text-dim); line-height: 1.6; }
-
-        /* CONTACT CARDS */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-            margin-top: 10px;
-        }
-
-        .contact-card {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            background: rgba(15, 23, 42, 0.4);
-            padding: 15px 20px;
-            border-radius: 16px;
-            border: 1px solid var(--card-border);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .contact-card:hover {
-            border-color: rgba(255, 87, 34, 0.3);
-            background: rgba(30, 41, 59, 0.6);
-            transform: translateY(-2px);
-        }
-
-        .contact-icon {
-            width: 42px; height: 42px;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            flex-shrink: 0;
-        }
-        
-        .contact-card.wa .contact-icon { background: rgba(37, 211, 102, 0.1); color: #25D366; }
-        .contact-card.email .contact-icon { background: rgba(255, 87, 34, 0.1); color: var(--pos-orange); }
-        .contact-card.email2 .contact-icon { background: rgba(234, 67, 53, 0.1); color: #ea4335; }
-
-        .contact-info { overflow: hidden; }
-        .contact-info h4 { color: #f8fafc; font-size: 0.95rem; font-weight: 600; margin-bottom: 3px; }
-        .contact-info p { color: var(--text-dim); font-size: 0.8rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-
-        /* DASHBOARD FOOTER (UNIVERSAL & MUTLAK 1 BARIS) */
-        .dashboard-footer {
-            width: 100%;
-            box-sizing: border-box;
-            background-color: transparent; 
-            border-top: 1px solid var(--card-border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 40px;
-            margin-top: auto;
-            font-family: 'Inter', 'Segoe UI', sans-serif;
-            z-index: 20;
-            height: 70px;
-            overflow: hidden;
-        }
-        .footer-brand {
-            display: flex; align-items: center; gap: 8px;
-            color: #f8fafc; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.5px;
-            white-space: nowrap; font-family: 'Sora', sans-serif;
-        }
-        .footer-desc { 
-            color: var(--text-dim); font-size: 0.85rem; margin: 0 15px; 
-            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-            text-align: center; flex: 1;
-        }
-        .footer-creator-badge {
-            display: inline-flex; align-items: center; gap: 6px;
-            background: var(--pos-orange-glow); border: 1px solid rgba(255, 87, 34, 0.2);
-            padding: 6px 16px; border-radius: 20px; color: #e2e8f0; font-size: 0.8rem;
-            white-space: nowrap; transition: all 0.3s ease;
-        }
-        .footer-creator-badge:hover { 
-            background: var(--pos-orange-hover); border-color: rgba(255, 87, 34, 0.5); 
-        }
-        .footer-creator-badge strong { color: var(--pos-orange); font-weight: 600; }
-
-        /* RESPONSIVE */
-        @media (max-width: 850px) {
-            .content-grid { grid-template-columns: 1fr; gap: 40px; padding: 30px 20px;}
-            .profile-header { flex-direction: column; text-align: center; padding: 40px 20px; }
-            .profile-title p.location { justify-content: center; }
-            .dashboard-footer { flex-direction: column; justify-content: center; gap: 10px; padding: 20px; height: auto; }
-            .footer-desc { display: none; }
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <a href="https://posnew.com/" class="header-left">
-            <i data-lucide="layers" style="color: #FF5722;"></i>
-            <span class="header-title">PosNew Hub</span>
-        </a>
-        <a href="https://posnew.com/" class="back-btn">
-            <i data-lucide="arrow-left" style="width: 16px; height: 16px;"></i> Back to Portal
-        </a>
-    </header>
-
-    <div class="main-wrapper">
-        <div class="about-card">
-            
-            <!-- HERO SECTION -->
-            <div class="profile-header">
-                <div class="profile-img-container">
-                    <img src="Ikhsan-Radiansyah.jpg" alt="Ikhsan Radiansyah">
-                </div>
-                <div class="profile-title">
-                    <div class="badge">
-                        Corporate Sales Manager PT Pos Indonesia (Persero) KCU Batam
-                    </div>
-                    <h1>Ikhsan Radiansyah</h1>
-                    <p class="location">
-                        <i data-lucide="map-pin" style="width: 16px; height: 16px; color: #FF5722;"></i> 
-                        Batam, Riau Islands, Indonesia
-                    </p>
-                </div>
-            </div>
-
-            <!-- TWO COLUMN CONTENT -->
-            <div class="content-grid">
-                
-                <!-- LEFT COLUMN -->
-                <div>
-                    <div class="section-title">
-                        <div class="icon-box"><i data-lucide="rocket" style="width: 20px; height: 20px;"></i></div> 
-                        About PosNew Hub
-                    </div>
-                    <p class="story-text">
-                        PosNew Hub isn't just a collection of links; it's a testament to the belief that <strong>efficiency is the cornerstone of great service.</strong>
-                    </p>
-                    <p class="story-text">
-                        As a Corporate Sales Manager handling high-volume B2B clients in Batam, I constantly look for ways to eliminate repetitive tasks. This platform serves as a unified command center designed to accelerate our daily workflow.
-                    </p>
-                    <p class="story-text">
-                        From automating HS Code lookups to providing Cost-Based Analysis (CBA) calculators and tracking corporate shipments, every tool here was built to solve real-world logistical challenges and help the team deliver faster, smarter solutions to our partners.
-                    </p>
-
-                    <div class="section-title" style="margin-top: 40px;">
-                        <div class="icon-box"><i data-lucide="code-2" style="width: 20px; height: 20px;"></i></div> 
-                        Core Expertise
-                    </div>
-                    <div class="expertise-container">
-                        <div class="expertise-badge">B2B Logistics Strategy</div>
-                        <div class="expertise-badge">Corporate Partnership</div>
-                        <div class="expertise-badge">Process Automation</div>
-                        <div class="expertise-badge">Python Scripting</div>
-                        <div class="expertise-badge">Web Tech (HTML/CSS)</div>
-                        <div class="expertise-badge">AI Prompting</div>
-                    </div>
-                </div>
-
-                <!-- RIGHT COLUMN -->
-                <div>
-                    <div class="section-title">
-                        <div class="icon-box"><i data-lucide="briefcase" style="width: 20px; height: 20px;"></i></div> 
-                        Career Journey
-                    </div>
-                    
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-title">Corporate Sales Manager</div>
-                            <div class="timeline-company">PT Pos Indonesia KCU Batam</div>
-                            <div class="timeline-desc">Leading B2B commercial strategies, managing corporate partnerships, and developing tech-driven automation tools.</div>
-                        </div>
-
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-title">Executive Manager</div>
-                            <div class="timeline-company">PT Pos Indonesia KC Langsa</div>
-                            <div class="timeline-desc">Oversaw branch operations, drove regional business targets, and managed postal service delivery performance.</div>
-                        </div>
-
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-title">Mngr. Accounting & Field Ops</div>
-                            <div class="timeline-company">PT Pos Indonesia (Persero)</div>
-                            <div class="timeline-desc">Managed accounting processes and supervised the performance of external service units (Unit Pelayanan Luar).</div>
-                        </div>
-
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-title">Management Trainee (Batch IX)</div>
-                            <div class="timeline-company">PT Pos Indonesia (Persero)</div>
-                            <div class="timeline-desc">Joined through the rigorous MT program in 2017, building a strong foundation in core postal operations.</div>
-                        </div>
-                    </div>
-
-                    <div class="section-title" style="margin-top: 40px;">
-                        <div class="icon-box"><i data-lucide="message-square" style="width: 20px; height: 20px;"></i></div> 
-                        Let's Connect
-                    </div>
-                    
-                    <div class="contact-grid">
-                        <a href="https://wa.me/6282160600763" target="_blank" class="contact-card wa">
-                            <div class="contact-icon"><i data-lucide="message-circle" style="width: 22px; height: 22px;"></i></div>
-                            <div class="contact-info">
-                                <h4>WhatsApp</h4>
-                                <p>0821-6060-0763</p>
-                            </div>
-                        </a>
-
-                        <a href="mailto:995480412@posindonesia.co.id" class="contact-card email">
-                            <div class="contact-icon"><i data-lucide="mail" style="width: 20px; height: 20px;"></i></div>
-                            <div class="contact-info">
-                                <h4>Corporate Email</h4>
-                                <p>995480412@posindonesia.co.id</p>
-                            </div>
-                        </a>
-
-                        <a href="mailto:ikhsan@posnew.com" class="contact-card email2">
-                            <div class="contact-icon"><i data-lucide="mail" style="width: 20px; height: 20px;"></i></div>
-                            <div class="contact-info">
-                                <h4>Personal Email</h4>
-                                <p>ikhsan@posnew.com</p>
-                            </div>
-                        </a>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <!-- FOOTER DASHBOARD MINIMALIS -->
-    <footer class="dashboard-footer">
-        <div class="footer-brand">
-            <i data-lucide="layers" style="color: #FF5722; width: 18px; height: 18px;"></i>
-            PosNew Hub
-        </div>
-        <p class="footer-desc">Independently developed utility system to optimize B2B and Retail logistics efficiency.</p>
-        <div class="footer-creator-badge">
-            <i data-lucide="code-2" style="color: #FF5722; width: 14px; height: 14px;"></i>
-            Built by <strong>Ikhsan Radiansyah</strong> &copy; 2026
-        </div>
-    </footer>
+    <link rel="stylesheet" href="assets/styles.css">
 
     <script>
-        // Inisialisasi Lucide Icons
-        lucide.createIcons();
+        try {
+            const savedTheme = localStorage.getItem('posnew-theme');
+            const preferred = savedTheme || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+            document.documentElement.dataset.theme = preferred;
+        } catch (_) {}
     </script>
+    <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+    <script defer src="assets/app.js"></script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Ikhsan Radiansyah",
+      "url": "https://posnew.com/about-me",
+      "image": "https://posnew.com/Ikhsan-Radiansyah.jpg",
+      "jobTitle": "Corporate Sales Manager",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "PT Pos Indonesia (Persero) KCU Batam"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Batam",
+        "addressRegion": "Riau Islands",
+        "addressCountry": "ID"
+      },
+      "email": "mailto:ikhsan@posnew.com"
+    }
+    </script>
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="site-header">
+        <nav class="nav-shell" aria-label="Primary navigation">
+            <a class="brand" href="/" aria-label="PosNew Hub home">
+                <span class="brand-mark"><img src="favicon.svg" alt="" width="25" height="25"></span>
+                <span class="brand-copy">
+                    <span class="brand-name">PosNew Hub</span>
+                    <span class="brand-tagline">Logistics workspace</span>
+                </span>
+            </a>
+            <div class="nav-actions">
+                <a class="nav-link" href="/#workspaces"><i data-lucide="layout-grid"></i><span>Workspaces</span></a>
+                <a class="nav-link" href="/about-me" aria-current="page"><i data-lucide="user-round"></i><span>About</span></a>
+                <button class="icon-button" type="button" data-theme-toggle aria-label="Switch theme"><i data-lucide="sun"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="page-main" id="main-content">
+        <section class="container page-hero">
+            <div class="profile-hero">
+                <div class="profile-photo-wrap">
+                    <picture>
+                        <source srcset="assets/ikhsan-radiansyah.webp" type="image/webp">
+                        <img src="Ikhsan-Radiansyah.jpg" alt="Portrait of Ikhsan Radiansyah" width="420" height="520">
+                    </picture>
+                </div>
+                <div class="profile-copy">
+                    <div class="eyebrow"><i data-lucide="briefcase-business" style="width:14px;height:14px"></i>Corporate sales & automation</div>
+                    <h1>Ikhsan <span>Radiansyah</span></h1>
+                    <p>Corporate Sales Manager at PT Pos Indonesia KCU Batam, combining B2B logistics strategy with practical automation to reduce repetitive work and improve daily service delivery.</p>
+                    <div class="profile-meta">
+                        <span><i data-lucide="map-pin"></i>Batam, Riau Islands, Indonesia</span>
+                        <span><i data-lucide="building-2"></i>PT Pos Indonesia (Persero)</span>
+                    </div>
+                    <div class="profile-stats" aria-label="Professional focus">
+                        <div class="profile-stat"><strong>Since 2017</strong><span>postal operations journey</span></div>
+                        <div class="profile-stat"><strong>B2B</strong><span>sales & partnerships</span></div>
+                        <div class="profile-stat"><strong>Automation</strong><span>workflow improvement</span></div>
+                    </div>
+                    <div class="hero-actions">
+                        <a class="button button-primary" href="https://wa.me/6282160600763" target="_blank" rel="noopener noreferrer"><i data-lucide="message-circle"></i>Start a conversation</a>
+                        <a class="button button-secondary" href="/"><i data-lucide="arrow-left"></i>Back to portal</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container about-layout">
+            <div>
+                <section class="content-card content-section" aria-labelledby="about-hub-title">
+                    <p class="section-kicker">The story</p>
+                    <h2 id="about-hub-title"><i data-lucide="rocket"></i>About PosNew Hub</h2>
+                    <p>PosNew Hub is more than a collection of links. It reflects a simple belief: <strong>efficiency is the foundation of great service.</strong></p>
+                    <p>While handling high-volume B2B clients in Batam, Ikhsan continually looks for ways to remove repetitive tasks. The portal acts as a unified command center for tools that support daily logistics and commercial workflows.</p>
+                    <p>From HS Code lookups and Cost-Based Analysis calculators to shipment tracking and bulk data conversion, every workspace was created to address practical operational challenges and help deliver faster, smarter solutions.</p>
+                    <div class="independent-note">PosNew Hub is an independently developed productivity portal. It is not an official corporate website of PT Pos Indonesia (Persero).</div>
+                </section>
+
+                <section class="content-card content-section" aria-labelledby="expertise-title">
+                    <p class="section-kicker">Capabilities</p>
+                    <h2 id="expertise-title"><i data-lucide="sparkles"></i>Core expertise</h2>
+                    <div class="skill-list" aria-label="Areas of expertise">
+                        <span class="skill">B2B Logistics Strategy</span>
+                        <span class="skill">Corporate Partnership</span>
+                        <span class="skill">Process Automation</span>
+                        <span class="skill">Python Scripting</span>
+                        <span class="skill">HTML & CSS</span>
+                        <span class="skill">AI Prompting</span>
+                        <span class="skill">Spreadsheet Workflows</span>
+                        <span class="skill">Batam FTZ Logistics</span>
+                    </div>
+                </section>
+            </div>
+
+            <div>
+                <section class="content-card content-section" aria-labelledby="career-title">
+                    <p class="section-kicker">Experience</p>
+                    <h2 id="career-title"><i data-lucide="milestone"></i>Career journey</h2>
+                    <div class="timeline">
+                        <article class="timeline-item">
+                            <span class="timeline-dot" aria-hidden="true"></span>
+                            <h3>Corporate Sales Manager</h3>
+                            <div class="timeline-company">PT Pos Indonesia KCU Batam</div>
+                            <p>Leading B2B commercial strategies, managing corporate partnerships, and developing technology-driven automation tools.</p>
+                        </article>
+                        <article class="timeline-item">
+                            <span class="timeline-dot" aria-hidden="true"></span>
+                            <h3>Executive Manager</h3>
+                            <div class="timeline-company">PT Pos Indonesia KC Langsa</div>
+                            <p>Oversaw branch operations, regional business targets, and postal service delivery performance.</p>
+                        </article>
+                        <article class="timeline-item">
+                            <span class="timeline-dot" aria-hidden="true"></span>
+                            <h3>Manager, Accounting & Field Operations</h3>
+                            <div class="timeline-company">PT Pos Indonesia (Persero)</div>
+                            <p>Managed accounting processes and supervised external service unit performance.</p>
+                        </article>
+                        <article class="timeline-item">
+                            <span class="timeline-dot" aria-hidden="true"></span>
+                            <h3>Management Trainee, Batch IX</h3>
+                            <div class="timeline-company">PT Pos Indonesia (Persero)</div>
+                            <p>Joined the Management Trainee program in 2017 and built a foundation in core postal operations.</p>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="content-card content-section" aria-labelledby="contact-title">
+                    <p class="section-kicker">Contact</p>
+                    <h2 id="contact-title"><i data-lucide="messages-square"></i>Let's connect</h2>
+                    <div class="contact-list">
+                        <a class="contact-link" href="https://wa.me/6282160600763" target="_blank" rel="noopener noreferrer">
+                            <span class="contact-icon"><i data-lucide="message-circle"></i></span>
+                            <span class="contact-copy"><strong>WhatsApp</strong><span>0821-6060-0763</span></span>
+                            <i data-lucide="arrow-up-right"></i>
+                        </a>
+                        <a class="contact-link" href="mailto:995480412@posindonesia.co.id">
+                            <span class="contact-icon"><i data-lucide="building-2"></i></span>
+                            <span class="contact-copy"><strong>Corporate email</strong><span>995480412@posindonesia.co.id</span></span>
+                            <i data-lucide="arrow-up-right"></i>
+                        </a>
+                        <a class="contact-link" href="mailto:ikhsan@posnew.com">
+                            <span class="contact-icon"><i data-lucide="mail"></i></span>
+                            <span class="contact-copy"><strong>Personal email</strong><span>ikhsan@posnew.com</span></span>
+                            <i data-lucide="arrow-up-right"></i>
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-shell">
+            <div class="footer-brand"><i data-lucide="layers-3"></i>PosNew Hub</div>
+            <p class="footer-caption">Independent tools built to simplify B2B and retail logistics workflows.</p>
+            <a class="footer-credit" href="/about-me" aria-label="About Ikhsan Radiansyah">
+                <i data-lucide="code-2"></i><span>Built by</span> <strong>Ikhsan Radiansyah</strong> · <span data-current-year>2026</span>
+            </a>
+        </div>
+    </footer>
 </body>
 </html>

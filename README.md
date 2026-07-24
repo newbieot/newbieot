@@ -1,29 +1,41 @@
-## Hi there, I'm Ikhsan Radiansyah 👋
+# PosNew Hub
 
-![Banner](https://capsule-render.vercel.app/api?type=waving&color=0f172a&height=200&section=header&text=Welcome%20to%20my%20Workspace&fontSize=30&fontColor=FF5722&animation=fadeIn)
+PosNew Hub is an independent logistics productivity portal created by Ikhsan Radiansyah. It provides a single directory for operational utilities, business automation tools, pricing calculators, tracking services, converters, and independent projects.
 
-I blend the world of **Corporate Sales** with **Tech Automation** to streamline B2B and retail logistics operations. 
+## Project structure
 
-Currently, I serve as a Corporate Sales & Partnership Manager at PT Pos Indonesia (Persero) in Batam. I build digital utilities and automation scripts to bridge the gap between complex logistics data and everyday operational efficiency.
+```text
+.
+├── index.html                 # Main workspace directory
+├── about-me.html              # Creator profile
+├── 404.html                   # Custom not-found page
+├── assets/
+│   ├── styles.css             # Shared responsive design system
+│   ├── app.js                 # Search, filters, theme and UI behavior
+│   └── ikhsan-radiansyah.webp # Optimized profile image
+├── functions/_middleware.js   # Redirects the old Pages domain to posnew.com
+├── _headers                   # Security and caching headers for Cloudflare Pages
+├── site.webmanifest           # Installable web-app metadata
+├── sitemap.xml
+├── robots.txt
+└── favicon / social preview assets
+```
 
-### 🔭 What I'm Working On
-My primary focus is **[PosNew Hub](https://posnew.com)**, an enterprise logistics portal built to accelerate daily workflows. It houses an ecosystem of micro-apps, including:
-*   📦 **PosIND Track & Trace:** Advanced corporate shipment tracking.
-*   🤖 **AI HS Code Automation:** Self-learning dictionary for customs clearance in Batam FTZ.
-*   🧮 **CBA Pricing Calculator:** Fast Cost-Based Analysis for B2B logistics deals.
-*   🔄 **Data Converters:** Transforming SAP data into Mile App templates and automating bulk data entry.
+## Deploying to Cloudflare Pages
 
-### 🚀 Skills & Arsenal
-- **Languages & Web:** HTML, CSS, Python (Automation Scripts).
-- **Tools & Workflows:** Advanced AI Prompting (ChatGPT, Claude, Gemini), Google Analytics 4, Advanced Spreadsheets.
-- **Domain Expertise:** B2B Sales Strategy, Supply Chain Logistics, Free Trade Zone (FTZ) Regulations.
+1. Replace the repository contents with this project while keeping the existing Git history.
+2. Commit and push the changes to the branch connected to Cloudflare Pages.
+3. No build command is required. Use the repository root as the output directory.
 
-### 🌱 Let's Connect!
-- 👯 I’m looking to collaborate on **logistics tech integration** and **business process automation**.
-- 💬 Ask me about **corporate partnership strategies**, **Batam logistics**, or **optimizing spreadsheet workflows**.
-- 📫 How to reach me: Visit my profile at **[posnew.com/about-me](https://posnew.com/about-me)**
+## Editing the workspace directory
 
----
-<p align="center">
-  <i>"Automating the mundane to focus on what matters."</i>
-</p>
+Workspace cards are defined directly in `index.html`. Each card has:
+
+- `data-category` for category filters;
+- `data-search` for search keywords;
+- a destination URL;
+- a title, description, tags, and Lucide icon.
+
+The site uses static HTML, CSS, and JavaScript only.
+
+> PosNew Hub is independently developed and is not an official corporate website of PT Pos Indonesia (Persero).
