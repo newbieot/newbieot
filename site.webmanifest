@@ -1,7 +1,7 @@
 {
   "name": "PosNew Hub",
   "short_name": "PosNew",
-  "description": "Independent logistics tools and business automation workspaces.",
+  "description": "Independent logistics tools, PDF shipping labels, and business automation workspaces.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

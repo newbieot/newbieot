@@ -1,5 +1,11 @@
 # Redesign summary
 
+## Latest update — PDF shipping label generator
+- Added `https://label.posnew.com/` to Quick Launch and the Logistics & Corporate Tools directory.
+- Added a featured workspace card for generating one or many paper-efficient A4 shipping labels as print-ready PDFs.
+- Added search terms covering label generation, DOCX/PDF letter import, A4 printing, and borderless layouts.
+- Updated homepage copy, workspace statistics, SEO metadata, README, and sitemap.
+
 ## Latest update — Standard Parcel tariff
 - Added `https://tarifppb.posnew.com/` to Quick Launch and the main workspace directory.
 - Added customer-facing copy explaining coverage for Batam and Tanjungpinang.
@@ -11,7 +17,7 @@
 - Added quick-launch shortcuts for frequently used workspaces.
 - Added category filters and keyboard-friendly workspace search.
 - Added persistent dark/light theme switching.
-- Redesigned all 16 workspace cards with clearer categories and calls to action.
+- Redesigned all workspace cards with clearer categories and calls to action.
 - Rebuilt the creator profile page with a stronger hero, career timeline, expertise, and contact cards.
 - Added a custom 404 page and a compact animated footer.
 
