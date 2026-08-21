@@ -1,5 +1,11 @@
 # Redesign summary
 
+## Latest update — Prangko Prisma and passport delivery
+- Added `https://prisma.posnew.com/` and `https://paspor.posnew.com/` to the Logistics & Corporate Tools directory.
+- Added searchable featured cards for personalized Prangko Prisma orders and completed-passport home delivery in Batam.
+- Updated workspace statistics from 18 to 20 total workspaces and from 14 to 16 logistics utilities.
+- Updated structured data, SEO metadata, README, and sitemap for both services.
+
 ## Latest update — PDF shipping label generator
 - Added `https://label.posnew.com/` to Quick Launch and the Logistics & Corporate Tools directory.
 - Added a featured workspace card for generating one or many paper-efficient A4 shipping labels as print-ready PDFs.
