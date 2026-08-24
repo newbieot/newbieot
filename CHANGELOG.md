@@ -1,5 +1,11 @@
 # Redesign summary
 
+## Latest update — official offer letter generator
+- Added `https://suratpenawaran.posnew.com/` to Quick Launch and the Logistics & Corporate Tools directory.
+- Added searchable copy for AI-assisted official PosIND offer letters, batch DOCX/PDF export, and label handoff.
+- Updated workspace statistics from 20 to 21 total workspaces and from 16 to 17 logistics utilities.
+- Updated structured data, SEO metadata, README, and sitemap.
+
 ## Latest update — Prangko Prisma and passport delivery
 - Added `https://prisma.posnew.com/` and `https://paspor.posnew.com/` to the Logistics & Corporate Tools directory.
 - Added searchable featured cards for personalized Prangko Prisma orders and completed-passport home delivery in Batam.

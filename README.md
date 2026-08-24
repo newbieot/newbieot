@@ -1,6 +1,6 @@
 # PosNew Hub
 
-PosNew Hub is an independent logistics productivity portal created by Ikhsan Radiansyah. It provides a single directory for operational utilities, business automation tools, pricing calculators, tracking services, converters, and independent projects. The directory also includes a customer-facing Standard Parcel tariff calculator at `tarifppb.posnew.com`, a print-ready PDF shipping label generator at `label.posnew.com`, personalized Prangko Prisma ordering at `prisma.posnew.com`, and completed-passport home delivery registration at `paspor.posnew.com`.
+PosNew Hub is an independent logistics productivity portal created by Ikhsan Radiansyah. It provides a single directory for operational utilities, business automation tools, pricing calculators, tracking services, converters, and independent projects. The directory also includes an AI-assisted official offer-letter generator at `suratpenawaran.posnew.com`, a print-ready PDF shipping label generator at `label.posnew.com`, a customer-facing Standard Parcel tariff calculator at `tarifppb.posnew.com`, personalized Prangko Prisma ordering at `prisma.posnew.com`, and completed-passport home delivery registration at `paspor.posnew.com`.
 
 ## Project structure
 
