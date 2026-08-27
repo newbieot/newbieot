@@ -2,7 +2,7 @@
 
 ## Latest update — Prangko Prisma v23
 - Rewrote the `prisma.posnew.com` workspace description to reflect the current end-to-end design and ordering experience.
-- Highlighted guided photo cropping, automatic background removal, three selectable templates, and print-ready 300 DPI preview output.
+- Highlighted guided photo cropping, automatic background removal, five selectable templates, and print-ready 300 DPI preview output.
 - Updated the workspace status, tags, search keywords, structured data, README, and sitemap.
 
 ## Latest update — official offer letter generator
